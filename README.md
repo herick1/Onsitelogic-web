@@ -1,3 +1,8 @@
+##Diagrama E/R de la aplicacion
+![imagen ER](https://github.com/herick1/Onsitelogic-web/tree/master/database/ER-shocklogic.png)
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
