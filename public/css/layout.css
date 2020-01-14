@@ -12,7 +12,7 @@
 				overflow:hidden; /* Eliminamos errores de float */
 			}
 
-			header .logo {
+			 .logo {
 				color:#f2f2f2;
 				font-size:30px;
 				line-height:100px;

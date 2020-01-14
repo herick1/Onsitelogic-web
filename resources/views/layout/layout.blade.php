@@ -17,9 +17,9 @@
 
 	</head>
 	<body>
-        <header>
+    <header>
 		<div class="wrapper">
-			<div class="logo">Onsitelogic Web</div>
+			 <a href= "{{ route('home') }}"><div class="logo">Onsitelogic Web</div></a>
 			
 			<nav>
 				<!-- este if con el request es para que el boton este seleccinado en la pagina donde estas
@@ -30,6 +30,6 @@
 	</header>
 		<!-- esto porque aqui debajo iria el contenido de la pagina sin afectar el layout-->
 		@yield('contenido');
-		<footer> Copyright ° herick  {{ date('Y') }}</footer>
+		<footer> Copyright ° Herick  {{ date('Y') }}</footer>
     </body>
 </html>
