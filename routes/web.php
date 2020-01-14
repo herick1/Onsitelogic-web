@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/inicial', [ 'as' => 'home' , 'uses'=> 'PagesController@home' ]);
