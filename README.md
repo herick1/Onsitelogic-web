@@ -1,4 +1,4 @@
-##Diagrama E/R de la aplicacion
+## Diagrama E/R de la aplicacion
 ![imagen ER](https://github.com/herick1/Onsitelogic-web/tree/master/database/ER-shocklogic.png)
 
 
