@@ -16,10 +16,9 @@ Route::get('/', function () {
 });
 
 
+Route::get('/', [ 'as' => 'home' , 'uses'=> 'ParticipanteController@index' ]);
 
-Route::get('/h', [ 'as' => 'home' , 'uses'=> 'ParticipanteController@index' ]);
-
-Route::resource('mensajes', 'ParticipanteController');
+Route::resource('participantes', 'ParticipanteController');
 
 
 //Route::get('/evento', [ 'as' => 'home' , 'uses'=> 'EventoController' ]);

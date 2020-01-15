@@ -22,9 +22,9 @@ class ParticipanteController extends Controller
     public function index()
     {
         //funcion para trar todos los mensajes
-        $messages = DB::table('mensajes')->get();
+        $participantes_lista = DB::table('Participante')->get();
 
-        return view('mensajes.index' , compact('messages'));
+        return view('participantes.index' , compact('participantes_lista'));
     }
 
     /**
@@ -34,7 +34,7 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-        return view('mensajes.create');
+        return view('participantes.create');
     }
 
     /**
@@ -48,15 +48,21 @@ class ParticipanteController extends Controller
 
         //Model::unguard();
         //metodo post
-        $mensaje= $request->input('mensaje');       
-        DB::select('CALL sp_insert_mensajes(:p0, :p1, :p2)',
+        $mensaje= $request->input('Participante');       
+        DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 )',
                 array(
-                    'p0' =>  $request->input('nombre'),
+                    'p0' =>  $request->input('cedula'),
                     'p1' =>  $request->input('email'),
-                    'p2' =>  $request->input('mensaje'),
+                    'p2' =>  $request->input('primer_nombre'),
+                    'p3' =>  "prueba",
+                    'p4' =>  "prueba",
+                    'p5' => "prueba",
+                    'p6' => "02-05-20",
+                    'p7' => "prueba",
+                    'p8' => "Visitante",
                 ));
-        $messages = DB::table('mensajes')->get();
-        return view('mensajes.index' , compact('messages'));
+        $participantes_lista = DB::table('Participante')->get();
+        return view('participantes.index' , compact('participantes_lista'));
     }
 
     /**
@@ -68,8 +74,8 @@ class ParticipanteController extends Controller
     public function show($id)
     {
         //es un select de una id 
-        $message = DB::table('mensajes')->where('id',$id)->first();
-        return view('mensajes.show', compact('message'));
+        $participante = DB::table('Participante')->where('id',$id)->first();
+        return view('participantes.show', compact('participante'));
     }
 
     /**
@@ -81,8 +87,8 @@ class ParticipanteController extends Controller
     public function edit($id)
     {
         //presentar formulario para actualizar mensaje
-        $message = DB::table('mensajes')->where('id',$id)->first();
-        return view('mensajes.edit', compact('message'));
+        $participantes_lista = DB::table('Participante')->where('id',$id)->first();
+        return view('participantes.edit', compact('participantes_lista'));
     }
 
     /**
@@ -94,14 +100,22 @@ class ParticipanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mensaje= $request->input('mensaje');
-        DB::select('CALL sp_update_mensajes(:p0, :p1)',
+        $mensaje= $request->input('Participante');
+        DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 , :p9)',
                 array(
                     'p0' => $id,
-                    'p1' => $mensaje
+                    'p1' =>  $request->input('cedula'),
+                    'p2' =>  $request->input('email'),
+                    'p3' =>  $request->input('primer_nombre'),
+                    'p4' =>  "prueba",
+                    'p5' =>  "prueba",
+                    'p6' => "prueba",
+                    'p7' => "02-05-20",
+                    'p8' => "prueba",
+                    'p9' => "Visitante",
                 ));
-        $messages = DB::table('mensajes')->get();
-        return view('mensajes.index' , compact('messages'));
+        $participantes_lista = DB::table('Participante')->get();
+        return view('participantes.index' , compact('participantes_lista'));
     }
 
     /**
@@ -112,11 +126,11 @@ class ParticipanteController extends Controller
      */
     public function destroy($id)
     {
-        DB::select('CALL sp_delete_mensajes(:p0)',
+        DB::select('CALL sp_delete_participante(:p0)',
                 array(
                     'p0' => $id
                 ));
-        $messages = DB::table('mensajes')->get();
-        return view('mensajes.index' , compact('messages'));
+        $participantes_lista = DB::table('Participante')->get();
+        return view('participantes.index' , compact('participantes_lista'));
     }
 }

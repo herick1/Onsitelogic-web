@@ -2,8 +2,8 @@
 
 @section('contenido')
 
- <h1> Mensajes </h1>
-	<p>{{$message->nombre}}</p>
-	<p>{{$message->email}}</p>
-	<p>{{$message->mensaje}}</p>
+ <h1> Participante </h1>
+	<p>{{$participante->cedula}}</p>
+	<p>{{$participante->email}}</p>
+	<p>{{$participante->pimer_nombre}}</p>
 @stop;

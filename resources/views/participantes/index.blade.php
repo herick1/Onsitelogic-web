@@ -2,7 +2,8 @@
 
 @section('contenido')
 
- <h1>Todos Los Mensajes </h1>
+<h1 > controles de busqueda</h1>
+ <h1>Todos Los participantes </h1>
 <table width="100%" border="1">
 	<thread>
 		<tr>
@@ -14,20 +15,20 @@
 		</tr>
 	</thread>
 	<body>
-		@foreach($messages as $message)
+		@foreach($participantes_lista as $participante)
 		<tr>
 
-			<td>{{$message->id}}</td>
+			<td>{{$participante->id}}</td>
 			<td>
-				<a href="{{route('mensajes.show', $message->id)}}" > 
-					{{$message->nombre}}
+				<a href="{{route('participantes.show', $participante->id)}}" > 
+					{{$participante->pimer_nombre}}
 				</a>
 			</td>
-			<td>{{$message->email}}</td>
-			<td>{{$message->mensaje}}</td>
+			<td>{{$participante->email}}</td>
+			<td>{{$participante->segundo_nombre}}</td>
 			<td>
-				<a href="{{route('mensajes.edit', $message->id)}}">Editar</a>
-				<form style="display:inline" method="POST" action="{{route('mensajes.destroy',$message->id)}}">
+				<a href="{{route('participantes.edit', $participante->id)}}">Editar</a>
+				<form style="display:inline" method="POST" action="{{route('participantes.destroy',$participante->id)}}">
 					{!!method_field('DELETE')!!}
 					{!!csrf_field()!!}
 					<button type="submit">Eliminar</button>					
