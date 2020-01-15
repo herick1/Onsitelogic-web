@@ -24,9 +24,11 @@
 				<input type="text" name="primer_nombre" value="{{old('primer_nombre')}}">
 				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} </input>
 			</label></p>
-
-				<input type="submit" value="enviar">
-
+			
+				<input  class="btn btn-info" type="submit" value="enviar">
+				<a href="{{route('participantes.index')}}" class="btn btn-outline-info" role="button">
+        			Volver
+    			</a>
 		</form>
 		</form>
 	</div>
