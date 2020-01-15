@@ -101,18 +101,19 @@ class ParticipanteController extends Controller
     public function update(Request $request, $id)
     {
         $mensaje= $request->input('Participante');
-        DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 , :p9)',
+
+        DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9 )',
                 array(
-                    'p0' => $id,
+                    'p0' =>  $id,
                     'p1' =>  $request->input('cedula'),
                     'p2' =>  $request->input('email'),
                     'p3' =>  $request->input('primer_nombre'),
                     'p4' =>  "prueba",
-                    'p5' =>  "prueba",
+                    'p5' =>  $request->input('primer_apellido'),
                     'p6' => "prueba",
                     'p7' => "02-05-20",
                     'p8' => "prueba",
-                    'p9' => "Visitante",
+                    'p9' => $request->input('tipo'),
                 ));
         $participantes_lista = DB::table('Participante')->get();
         return view('participantes.index' , compact('participantes_lista'));

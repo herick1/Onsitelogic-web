@@ -8,72 +8,75 @@
     <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
 		<form method="POST" action="{{ route('participantes.store') }}">
 			{!!csrf_field()!!}
-			<p><label for="cedula">
-				cedula
-				<br>
-				<input  class="form-control" type="number" name="cedula" >
+			<label for="cedula"><b>cedula</b></label>
+			<div class="form-group">
+				<input  class="form-control" type="number" name="cedula"  class="form-control input-lg" >
 				{!! $errors->first('cedula', '<span class=error>:participantes>/span>')!!} 
 			    </input>
-			</label></p>
+		    </div>
 
-			<p><label for="primer_nombre">
-				primer nombre
-				<br>
-				<input  class="form-control" type="text" name="primer_nombre" >
-				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>
-			<p><label for="primer_nombre">
-				Segundo nombre
-				<br>
-				<input  class="form-control" type="text" name="segundo_nombre" >
-				{!! $errors->first('segundo_nombre', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>
-			<p><label for="primer_nombre">
-				primer apellido
-				<br>
-				<input  class="form-control" type="text" name="primer_apellido">
-				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>
-			<p><label for="primer_nombre">
-				Segundo apellido
-				<br>
-				<input  class="form-control" type="text" name="segundo_apellido" >
-				{!! $errors->first('segundo_apellido', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>
-			<p><label for="email">
-				Email
-				<br> 
-				<input  class="form-control" type="text" name="email" >
-				{!! $errors->first('email', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>
-			<p><label for="fecha_de_nacimiento">
-				Fecha de nacimiento
-				<br>
-				<input  class="form-control" type="date" name="fecha_de_nacimiento">
-				{!! $errors->first('fecha_de_nacimiento', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>		
-			<p><label for="telefono">
-				Telefono				
-				<br>
-				<input  class="form-control" type="text" name="telefono">
-				{!! $errors->first('telefono', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>	
-			<p><label for="tipo">
-				Tipo
-				<select class="card text-left p-2" name="tipo">
-				       <option selected value="Visitante">Visitante</option>
-				       <option value="Exponente">Exponente</option> 
-				       <option  value="Asesor">Asesor</option> 
-				       <option value="Otros">Otros</option> 
-				</select>
-				{!! $errors->first('telefono', '<span class=error>:participantes>/span>')!!} </input>
-			</label></p>
+			<label for="primer_nombre"><b>primer nombre</b></label>
+			<div class="form-group">
+				<input  class="form-control input-lg" type="text" name="primer_nombre" >
+				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} 
+				</input>
+			</div>
 
-			
-				<input  class="btn btn-info" type="submit" value="enviar">
-				<a href="{{route('participantes.index')}}" class="btn btn-outline-info" role="button">
-        			Volver
-    			</a>
+			<label for="primer_nombre"><b>Segundo nombre</b></label>
+			<div class="form-group">
+				<input  class="form-control input-lg" type="text" name="segundo_nombre" >
+				{!! $errors->first('segundo_nombre', '<span class=error>:participantes>/span>')!!} 
+				</input>
+			</div>
+
+			<label for="primer_nombre"><b>primer apellido</b></label>
+			<div class="form-group">
+				<input  class="form-control input-lg" type="text" name="primer_apellido">
+				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} 
+				</input>
+			</div>
+
+			<label for="primer_nombre"><b>Segundo apellido</b></label>
+			<div class="form-group">
+				<input  class="form-control input-lg" type="text" name="segundo_apellido" >
+				{!! $errors->first('segundo_apellido', '<span class=error>:participantes>/span>')!!} 
+				</input>
+			</div>
+			<label for="email"><b>Email</b></label>
+			<div class="form-group">
+				<input  class="form-control input-lg" type="text" name="email" >
+				{!! $errors->first('email', '<span class=error>:participantes>/span>')!!} 
+				</input>
+			</div>
+
+			<label for="fecha_de_nacimiento"><b>Fecha de nacimiento</b></label>
+			<div class="form-group">
+				<input  class="form-control input-lg" type="date" name="fecha_de_nacimiento">
+				{!! $errors->first('fecha_de_nacimiento', '<span class=error>:participantes>/span>')!!} 
+				</input>		
+			</div>
+
+			<label for="telefono"><b>Telefono</b>	
+			<div class="form-group">
+				<input  class="form-control input-lg" type="text" name="telefono">
+				{!! $errors->first('telefono', '<span class=error>:participantes>/span>')!!} 
+				</input>
+			</div>
+
+			<label for="tipo"><b>Tipo</b></label>
+			<select class="card text-left p-2" name="tipo">
+			       <option selected value="Visitante">Visitante</option>
+			       <option value="Exponente">Exponente</option> 
+			       <option  value="Asesor">Asesor</option> 
+			       <option value="Otros">Otros</option> 
+			</select>
+
+			<br>
+			<br>			
+			<input  class="btn btn-info" type="submit" value="enviar">
+			<a href="{{route('participantes.index')}}" class="btn btn-outline-info" role="button">
+    			Volver
+			</a>
 		</form>
 		</form>
 	</div>

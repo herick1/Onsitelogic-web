@@ -33,7 +33,6 @@ class CreateParticipantesTableAndStoresprocedured extends Migration
                 delete from `Participante` WHERE `id` = _id;
             END
 SQL;
-// no se porque hay que dejar esta linea anterior alli asi porquue  si la trato de mover dar error al migrar 
         DB::connection()->getPdo()->exec($sql);
     }
 

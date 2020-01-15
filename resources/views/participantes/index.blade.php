@@ -51,7 +51,7 @@
 					@foreach($participantes_lista as $participante)
 					<tr>
 
-						<td>{{$participante->id}}</td>
+						<td>{{$participante->cedula}}</td>
 						<td>
 							<a href="{{route('participantes.show', $participante->id)}}" > 
 								{{$participante->pimer_nombre}}

@@ -13,10 +13,10 @@ class CreateEventosTableAndStoresprocedured extends Migration
      */
     public function up()
     {
-        Schema::create('eventos_table_and_storesprocedured', function (Blueprint $table) {
+        /*Schema::create('eventos_table_and_storesprocedured', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -26,6 +26,6 @@ class CreateEventosTableAndStoresprocedured extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventos_table_and_storesprocedured');
+        //Schema::dropIfExists('eventos_table_and_storesprocedured');
     }
 }

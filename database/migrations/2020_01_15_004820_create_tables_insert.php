@@ -53,12 +53,12 @@ class CreateTablesInsert extends Migration
                 );
 
                 create table Historial_Usuario_Evento(
-                   id integer,
+                   id integer unique AUTO_INCREMENT,
                    asistencia int NOT NULL,
                   fecha_inicio date,
                    fecha_fin date,
-                   fk_participante integer,
-                   fk_evento integer,
+                   fk_participante integer NOT NULL,
+                   fk_evento integer NOT NULL,
                    constraint pk_id_historial primary key(id),
                    constraint fk_particiHistorial foreign key(fk_participante) references Participante(id),
                    constraint fk_eventHistorial foreign key(fk_evento) references Evento(id),
@@ -82,7 +82,6 @@ SQL;
             drop table Evento;
             drop table Lugar;
 SQL;
-// no se porque hay que dejar esta linea anterior alli asi porquue  si la trato de mover dar error al migrar 
         DB::connection()->getPdo()->exec($sql);
     }
 }
