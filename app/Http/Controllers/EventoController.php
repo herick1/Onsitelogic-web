@@ -21,9 +21,9 @@ class EventoController extends Controller
     public function index()
     {
         //funcion para trar todos los mensajes
-        $participantes_lista = DB::table('Participante')->get();
+        $eventos_lista = DB::table('Evento')->get();
 
-        return view('eventos.index' , compact('participantes_lista'));
+        return view('eventos.index' , compact('eventos_lista'));
     }
 
     /**
@@ -47,21 +47,17 @@ class EventoController extends Controller
 
         //Model::unguard();
         //metodo post
-        $mensaje= $request->input('Participante');       
-        DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 )',
+        $mensaje= $request->input('Evento');       
+        DB::select('CALL sp_insert_evento(:p0, :p1, :p2, :p3, :p4)',
                 array(
-                    'p0' =>  $request->input('cedula'),
-                    'p1' =>  $request->input('email'),
-                    'p2' =>  $request->input('primer_nombre'),
-                    'p3' =>  "prueba",
-                    'p4' =>  $request->input('primer_apellido'),
-                    'p5' => "prueba",
-                    'p6' => "02-05-20",
-                    'p7' => "prueba",
-                    'p8' => $request->input('tipo'),
+                    'p0' =>  $request->input('tipo'),
+                    'p1' =>  $request->input('nombre'),
+                    'p2' =>  $request->input('cantidad_de_personas'),
+                    'p3' =>  $request->input('fecha_inicio'),
+                    'p4' =>  $request->input('fecha_fin')
                 ));
-        $participantes_lista = DB::table('Participante')->get();
-        return view('eventos.index' , compact('participantes_lista'));
+        $eventos_lista = DB::table('Evento')->get();
+        return view('eventos.index' , compact('eventos_lista'));
     }
 
     /**
@@ -73,8 +69,8 @@ class EventoController extends Controller
     public function show($id)
     {
         //es un select de una id 
-        $participante = DB::table('Participante')->where('id',$id)->first();
-        return view('eventos.show', compact('participante'));
+        $evento = DB::table('Evento')->where('id',$id)->first();
+        return view('eventos.show', compact('evento'));
     }
 
     /**
@@ -86,8 +82,8 @@ class EventoController extends Controller
     public function edit($id)
     {
         //presentar formulario para actualizar mensaje
-        $participantes_lista = DB::table('Participante')->where('id',$id)->first();
-        return view('eventos.edit', compact('participantes_lista'));
+        $eventos_lista = DB::table('Evento')->where('id',$id)->first();
+        return view('eventos.edit', compact('eventos_lista'));
     }
 
     /**
@@ -99,22 +95,18 @@ class EventoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mensaje= $request->input('Participante');
-        DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 , :p9)',
+        $mensaje= $request->input('Evento');
+        DB::select('CALL sp_update_evento(:p0, :p1, :p2, :p3, :p4, :p5)',
                 array(
                     'p0' => $id,
-                    'p1' =>  $request->input('cedula'),
-                    'p2' =>  $request->input('email'),
-                    'p3' =>  $request->input('primer_nombre'),
-                    'p4' =>  "prueba",
-                    'p5' =>  "prueba",
-                    'p6' => "prueba",
-                    'p7' => "02-05-20",
-                    'p8' => "prueba",
-                    'p9' => "Visitante",
+                    'p1' =>  $request->input('tipo'),
+                    'p2' =>  $request->input('nombre'),
+                    'p3' =>  $request->input('cantidad_de_personas'),
+                    'p4' =>  $request->input('fecha_inicio'),
+                    'p5' =>  $request->input('fecha_fin'),
                 ));
-        $participantes_lista = DB::table('Participante')->get();
-        return view('eventos.index' , compact('participantes_lista'));
+        $eventos_lista = DB::table('Evento')->get();
+        return view('eventos.index' , compact('eventos_lista'));
     }
 
     /**
@@ -125,11 +117,11 @@ class EventoController extends Controller
      */
     public function destroy($id)
     {
-        DB::select('CALL sp_delete_participante(:p0)',
+        DB::select('CALL sp_delete_evento(:p0)',
                 array(
                     'p0' => $id
                 ));
-        $participantes_lista = DB::table('Participante')->get();
-        return view('eventos.index' , compact('participantes_lista'));
+        $eventos_lista = DB::table('Evento')->get();
+        return view('eventos.index' , compact('eventos_lista'));
     }
 }

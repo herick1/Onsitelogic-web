@@ -42,25 +42,25 @@
                     </tr>
                 </thead>
                 <tbody>
-					@foreach($participantes_lista as $participante)
+					@foreach($eventos_lista as $evento)
 					<tr>
 
-						<td>{{$participante->id}}</td>
+						<td>{{$evento->id}}</td>
 						<td>
-							<a href="{{route('eventos.show', $participante->id)}}" > 
-								{{$participante->pimer_nombre}}
+							<a href="{{route('eventos.show', $evento->id)}}" > 
+								{{$evento->nombre}}
 							</a>
 						</td>         
-                        <td>{{$participante->primer_apellido}}</td>
-						<td>{{$participante->fecha_de_nacimiento}}</td>
-                        <td>{{$participante->fecha_de_nacimiento}}</td>
+                        <td>{{$evento->tipo}}</td>
+						<td>{{$evento->fecha_inicio}}</td>
+                        <td>{{$evento->fecha_fin}}</td>
 						<td>
-							<a href="{{route('eventos.edit', $participante->id)}}">
+							<a href="{{route('eventos.edit', $evento->id)}}">
 								<button class="btn btn-primary">
                                 Actualizar
                                 </button>
 							</a>
-							<form style="display:inline" method="POST" action="{{route('eventos.destroy',$participante->id)}}">
+							<form style="display:inline" method="POST" action="{{route('eventos.destroy',$evento->id)}}">
 								{!!method_field('DELETE')!!}
 								{!!csrf_field()!!}
 								<button class="btn btn-danger" type="submit">Eliminar</button>					

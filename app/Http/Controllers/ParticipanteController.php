@@ -112,8 +112,8 @@ class ParticipanteController extends Controller
                     'p5' =>  $request->input('primer_apellido'),
                     'p6' =>  $request->input('segundo_apellido'),
                     'p7' =>  $request->input('fecha_de_nacimiento'),
-                    'p8' =>  $request->input('telefono'),
-                    'p9' =>  $request->input('tipo'),
+                    'p8' => $request->input('telefono'),
+                    'p9' => $request->input('tipo'),
                 ));
         $participantes_lista = DB::table('Participante')->get();
         return view('participantes.index' , compact('participantes_lista'));
