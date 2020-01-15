@@ -6,4 +6,5 @@
 	<p>{{$participante->cedula}}</p>
 	<p>{{$participante->email}}</p>
 	<p>{{$participante->pimer_nombre}}</p>
+
 @stop;

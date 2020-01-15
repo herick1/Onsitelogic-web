@@ -2,58 +2,73 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-		<link rel="stylesheet" href="{{asset('css/layout.css')}}">
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <meta name="description" content="">
+	  <meta name="generator" content="Jekyll v3.8.6">
+	  <title>Proyecto OnsiteLogic</title>
+	  <link rel="icon" href="https://i0.wp.com/raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/django-logo.png?resize=450%2C450&ssl=1&crop=1">
 
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
+	    <!-- Bootstrap core CSS -->
+	    <link rel="stylesheet" href="{{asset('static/bootstrap.min.css')}}">
+	    <script src="{{asset('static/bootstrap.bundle.min.js')}}"></script>
+	    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	    <script src="{{asset('static/sweetalert.min.js')}}"></script>
+	    
 
-        <title></title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+	  <link href="{{asset('dashboard.css')}}" rel="stylesheet">
+	  <style type="text/css">/* Chart.js */
+	    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
+	  </style>
 	</head>
+
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+
+		  <nav class="navbar navbar-dark fixed-top bg-info shadow ">
+		  <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center" href="/">Proyecto OnsiteLogic</a>
+		  <ul class="navbar-nav px-3">
+		    <li class="nav-item text-nowrap">
+		      <a class="nav-link text-white" href= "{{ route('home') }}">Inicio</a>
+		    </li>
+		  </ul>
+		</nav>
+		<div class="container-fluid text-center">
+		  <div class="row">
+		    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+		      <div class="sidebar-sticky">
+		        <ul class="nav flex-column">
+
+		            <li class="nav-item">
+		              <a class="nav-link" href= "{{ route('home') }}">
+		                <span data-feather="users"></span>
+		                Personas
+		              </a>
+		            </li>
+		            <li class="nav-item">
+		              <a class="nav-link" href= "{{ route('home') }}">
+		                <span data-feather="file"></span>
+		                Eventos
+		              </a>
+		            </li>
+		        </ul>       
+      </div>
+    </nav>
+		    <main role="main" style="padding-top:0px;"class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute;  overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
 
-    <header>
-		<div class="wrapper">
-			 <a href= "{{ route('home') }}"><div class="logo">Onsitelogic Web</div></a>
-			
-			<nav>
-				<!-- este if con el request es para que el boton este seleccinado en la pagina donde estas
-				para hacerlo mas dinamico , y la referencia es al link no al archivo blade eso se encarga el pageController -->
-				<a class="{{ request() ->is('/')? 'active' :'' }}" href= "{{ route('home') }}">Inicio</a>
-			</nav>
+				@yield('contenido');
+				<footer> Copyright ° Herick  {{ date('Y') }}</footer>
+
+
+		    </main>
+		  </div>
 		</div>
-	</header>
-		<!-- esto porque aqui debajo iria el contenido de la pagina sin afectar el layout-->
-		@yield('contenido');
-		<footer> Copyright ° Herick  {{ date('Y') }}</footer>
-    </body>
+		      <script src="{{asset('static/jquery-3.4.1.slim.min.js')}}"></script>
+		      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+		      <script src="{{asset('static/bootstrap.bundle.min.js')}}"></script>
+		      <script src="{{asset('static/feather.min.js')}}"></script>
+		      <script src="{{asset('static/Chart.min.js')}}"></script>
+		      <script src="{{asset('static/dashboard.js')}}"></script>
+	</body>
 </html>
