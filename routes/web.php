@@ -11,14 +11,10 @@
 */
 
 
-Route::get('/', function () {
-    return view('page_inicial');
-});
-
-
 Route::get('/', [ 'as' => 'home' , 'uses'=> 'ParticipanteController@index' ]);
 
 Route::resource('participantes', 'ParticipanteController');
 
+Route::get('/evento', [ 'as' => 'evento' , 'uses'=> 'EventoController@index' ]);
 
-//Route::get('/evento', [ 'as' => 'home' , 'uses'=> 'EventoController' ]);
+Route::resource('eventos', 'EventoController');

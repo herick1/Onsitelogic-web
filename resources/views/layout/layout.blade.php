@@ -46,7 +46,7 @@
 		              </a>
 		            </li>
 		            <li class="nav-item">
-		              <a class="nav-link" href= "{{ route('home') }}">
+		              <a class="nav-link" href= "{{ route('evento') }}">
 		                <span data-feather="file"></span>
 		                Eventos
 		              </a>
