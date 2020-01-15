@@ -24,7 +24,8 @@ class CreateParticipantesTableAndStoresprocedured extends Migration
             DROP PROCEDURE IF EXISTS sp_update_participante;
             CREATE PROCEDURE sp_update_participante(IN _id INT ,IN _cedula numeric(10) , IN _email varchar(200) , IN _pimer_nombre varchar(30), _segundo_nombre varchar(30), _primer_apellido varchar(60), _segundo_apellido varchar(60), _fecha_de_nacimiento date, _telefono varchar(30), _tipo varchar(20))
             BEGIN
-                UPDATE `Participante` SET `email` = _email WHERE `id` = _id;
+                UPDATE `Participante` SET `cedula` = _cedula, `email` = _email, `pimer_nombre` = _pimer_nombre, `segundo_apellido` = _segundo_apellido, `primer_apellido` = _primer_apellido, `segundo_apellido` = _segundo_apellido, `fecha_de_nacimiento` = _fecha_de_nacimiento, `telefono` = _telefono, `tipo` = _tipo
+                WHERE `id` = _id;
             END;
 
             DROP PROCEDURE IF EXISTS sp_delete_participante;
@@ -53,6 +54,5 @@ SQL;
         $sql = "DROP PROCEDURE IF EXISTS sp_delete_participante";
         DB::connection()->getPdo()->exec($sql);
 
-        Schema::drop('mensajes');
     }
 }

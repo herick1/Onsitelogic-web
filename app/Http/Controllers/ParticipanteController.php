@@ -54,11 +54,11 @@ class ParticipanteController extends Controller
                     'p0' =>  $request->input('cedula'),
                     'p1' =>  $request->input('email'),
                     'p2' =>  $request->input('primer_nombre'),
-                    'p3' =>  "prueba",
+                    'p3' =>  $request->input('segundo_nombre'),
                     'p4' =>  $request->input('primer_apellido'),
-                    'p5' => "prueba",
-                    'p6' => "02-05-20",
-                    'p7' => "prueba",
+                    'p5' => $request->input('segundo_apellido'),
+                    'p6' => $request->input('fecha_de_nacimiento'),
+                    'p7' => $request->input('telefono'),
                     'p8' => $request->input('tipo'),
                 ));
         $participantes_lista = DB::table('Participante')->get();
@@ -108,12 +108,12 @@ class ParticipanteController extends Controller
                     'p1' =>  $request->input('cedula'),
                     'p2' =>  $request->input('email'),
                     'p3' =>  $request->input('primer_nombre'),
-                    'p4' =>  "prueba",
+                    'p4' =>  $request->input('segundo_nombre'),
                     'p5' =>  $request->input('primer_apellido'),
-                    'p6' => "prueba",
-                    'p7' => "02-05-20",
-                    'p8' => "prueba",
-                    'p9' => $request->input('tipo'),
+                    'p6' =>  $request->input('segundo_apellido'),
+                    'p7' =>  $request->input('fecha_de_nacimiento'),
+                    'p8' =>  $request->input('telefono'),
+                    'p9' =>  $request->input('tipo'),
                 ));
         $participantes_lista = DB::table('Participante')->get();
         return view('participantes.index' , compact('participantes_lista'));
