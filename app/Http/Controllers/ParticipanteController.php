@@ -55,11 +55,11 @@ class ParticipanteController extends Controller
                     'p1' =>  $request->input('email'),
                     'p2' =>  $request->input('primer_nombre'),
                     'p3' =>  "prueba",
-                    'p4' =>  "prueba",
+                    'p4' =>  $request->input('primer_apellido'),
                     'p5' => "prueba",
                     'p6' => "02-05-20",
                     'p7' => "prueba",
-                    'p8' => "Visitante",
+                    'p8' => $request->input('tipo'),
                 ));
         $participantes_lista = DB::table('Participante')->get();
         return view('participantes.index' , compact('participantes_lista'));

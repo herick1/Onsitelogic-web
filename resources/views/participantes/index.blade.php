@@ -40,9 +40,9 @@
                 <thead>
                     <tr>
                         <th>Cedula</th>
-                        <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
+                        <th>Email</th>
                         <th>Asistencia</th>
                         <th>Acciones</th>
                     </tr>
@@ -56,9 +56,9 @@
 							<a href="{{route('participantes.show', $participante->id)}}" > 
 								{{$participante->pimer_nombre}}
 							</a>
-						</td>
+						</td>         
+                        <td>{{$participante->primer_apellido}}</td>
 						<td>{{$participante->email}}</td>
-						<td>{{$participante->segundo_nombre}}</td>
 						<td>
 							<a>
 								<button class="btn btn-danger">
