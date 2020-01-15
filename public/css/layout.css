@@ -1,4 +1,5 @@
-			header {
+
+		header {
 				width:100%; /* Establecemos que el header abarque el 100% del documento */
 				overflow:hidden; /* Eliminamos errores de float */
 				background:#252932;
