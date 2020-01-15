@@ -15,12 +15,12 @@ class CreateTablesInsert extends Migration
     {
         $sql = <<<SQL
                 create table Lugar(
-                  id numeric(10) unique,
+                  id integer unique,
                   nombre varchar(40) not null,
                   tipo varchar(30) not null,
-                  fk_Lugar numeric(10),
+                  fk_Lugar integer,
                   constraint pk_idLugar primary key(id),
-                  constraint fk_Lugar_id FOREIGN KEY (id) REFERENCES Lugar (id)
+                  constraint fk_Lugar_id FOREIGN KEY (fk_Lugar) REFERENCES Lugar (id)
                 );
 
                 create table Participante(
@@ -49,7 +49,7 @@ class CreateTablesInsert extends Migration
                    fecha_fin date,
                    fk_lugar integer,
                    constraint pk_idEvento primary key(id),
-                   constraint fk_parlugar foreign key(fk_lugar) references Lugar(id)
+                   constraint fk_Evenlugar foreign key(fk_lugar) references Lugar(id)
                 );
 
                 create table Historial_Usuario_Evento(
