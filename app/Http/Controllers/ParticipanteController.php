@@ -11,7 +11,7 @@ class ParticipanteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth',['except'=> ['create','store', 'index', 'show', 'edit','update', 'destroy']]);
+        //$this->middleware('auth',['except'=> ['create','store', 'index', 'show', 'edit','update', 'destroy']]);
     }
 
     /**
@@ -21,10 +21,14 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        //funcion para trar todos los mensajes
-        $participantes_lista = DB::table('Participante')->get();
-
-        return view('participantes.index' , compact('participantes_lista'));
+        $eventosGet = "Seleccione un evento";
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+                                                   FROM Participante p"
+        ));
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
 
     /**
@@ -133,5 +137,24 @@ class ParticipanteController extends Controller
                 ));
         $participantes_lista = DB::table('Participante')->get();
         return view('participantes.index' , compact('participantes_lista'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+    public function busquedaEvento($idEvento = 1, $nombre= 'Seleccone un evento') 
+    {
+        $eventosGet = $nombre;
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia
+                                                   FROM Participante p, historial_usuario_evento h
+                                                   WHERE p.id=fk_participante AND h.fk_evento=$idEvento"
+        ));
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
 }

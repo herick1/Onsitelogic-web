@@ -27,12 +27,17 @@
                <div class="col-md-8"></div>
            </div>
         </div>
-        <select class="card text-left p-2" name="Evento">
-		   <option class="dropdown-menu" selected value="0"> Elige un evento </option>
-		       <option value="1">Evento 1</option> 
-		       <option  value="2">Evento 2</option> 
-		       <option value="3">Evento 3</option> 
-		</select>
+        <div class="dropdown show">
+            <a class="btn btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{$eventosGet}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach($eventos as $evento)
+                    <a class="dropdown-item"  name="EventoGet" value="{{$evento->id}}" href= "{{ route('busquedaEvento',[$evento->id,$evento->nombre])}}">{{$evento->nombre}}</a> 
+                @endforeach
+            </div>
+        </div>
+
     </form>
 
         <div class="table-responsive">
@@ -59,12 +64,16 @@
 						</td>         
                         <td>{{$participante->primer_apellido}}</td>
 						<td>{{$participante->email}}</td>
-						<td>
-							<a>
-								<button class="btn btn-danger">
+						<td> 	
+                            @if($participante->asistencia == 1)
+                                <button class="btn btn-success" style="width: 50px;">
+                                Si
+                                </button>
+                            @else
+                                <button class="btn btn-danger" style="width: 50px;">
                                 No
                                 </button>
-							</a>							
+                            @endif					
 						</td>
 						<td>
 							<a href="{{route('participantes.edit', $participante->id)}}">
