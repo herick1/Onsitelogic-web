@@ -49,8 +49,6 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request)
     {
-
-        //Model::unguard();
         //metodo post
         $mensaje= $request->input('Participante');       
         DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 )',
@@ -65,13 +63,35 @@ class ParticipanteController extends Controller
                     'p7' => $request->input('telefono'),
                     'p8' => $request->input('tipo'),
                 ));
-        //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
-        $eventosGet ="Seleccione un evento";
+
+        $id_participante=null;
+        //buscamos la id del participante
+        $participantesID = DB::select(DB::raw("SELECT id
+                                          FROM Participante
+                                          WHERE cedula = $request->input('cedula') and email = $request->input('email')
+                                          and pimer_nombre = $request->input('primer_nombre') 
+                                          and segundo_nombre = $request->input('segundo_nombre') 
+                                          and primer_apellido =  $request->input('primer_apellido') 
+                                          and segundo_apellido = $request->input('segundo_apellido')
+                                          and fecha_de_nacimiento = $request->input('fecha_de_nacimiento')
+                                          and telefono = $request->input('telefono')
+                                          and tipo = $request->input('tipo')"
+        ));
+        foreach ($participantesID as $participanteID) {
+            $id_participante=$participanteID->id;
+        }
+        //insertamos al participante en toda la tabla de historial_usuario_evento
+        //TODO se puede hacer directo con un trigger (revisar stored procedured en DDL)
+        foreach ($eventos as $eventoValue) {
+            DB::select('CALL sp_insertar_historial(:p0, :p1, :p2)',
+                array(
+                    'p0' =>  0,
+                    'p1' =>  $id_participante,
+                    'p2' =>  $eventoValue->id,
+            ));
+        }
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
-        ));
-        $eventos = DB::select(DB::raw("SELECT id, nombre
-                                       from Evento"
         ));
         return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }

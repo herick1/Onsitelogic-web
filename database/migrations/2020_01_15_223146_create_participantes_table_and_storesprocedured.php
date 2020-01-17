@@ -15,8 +15,6 @@ class CreateParticipantesTableAndStoresprocedured extends Migration
     {
 
         $sql = <<<SQL
-            DROP PROCEDURE IF EXISTS sp_insertar_historial;
-
 
             DROP PROCEDURE IF EXISTS sp_insert_participante;
             CREATE PROCEDURE sp_insert_participante(IN _cedula numeric(10) , IN _email varchar(200) , IN _pimer_nombre varchar(30), _segundo_nombre varchar(30), _primer_apellido varchar(60), _segundo_apellido varchar(60), _fecha_de_nacimiento date, _telefono varchar(30), _tipo varchar(20))
@@ -46,6 +44,11 @@ class CreateParticipantesTableAndStoresprocedured extends Migration
                 WHERE `id` = _id;
             END;
 
+            DROP PROCEDURE IF EXISTS sp_insertar_historial;
+            CREATE PROCEDURE sp_insertar_historial(IN _asistencia int , IN _fk_participante int, IN _fk_evento integer)
+            BEGIN
+                INSERT INTO `historial_usuario_evento`(`asistencia`,  `fk_participante`, `fk_evento`) VALUES(_asistencia, _fk_participante, _fk_evento);
+            END;
 
 SQL;
         DB::connection()->getPdo()->exec($sql);
