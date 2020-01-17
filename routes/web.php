@@ -19,4 +19,4 @@ Route::get('/evento', [ 'as' => 'evento' , 'uses'=> 'EventoController@index' ]);
 
 Route::resource('eventos', 'EventoController');
 
-Route::get('busquedaEvento/{idEvento?}/{nombre?}', ['as' => 'busquedaEvento', 'uses'=> 'ParticipanteController@busquedaEvento'])->where('idEvento' , "[0-9]+");
+Route::get('busquedaEvento/{idEvento?}', ['as' => 'busquedaEvento', 'uses'=> 'ParticipanteController@busquedaEvento'])->where('idEvento' , "[0-9]+");

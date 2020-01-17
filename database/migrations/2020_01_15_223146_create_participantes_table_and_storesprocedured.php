@@ -31,7 +31,9 @@ class CreateParticipantesTableAndStoresprocedured extends Migration
             DROP PROCEDURE IF EXISTS sp_delete_participante;
             CREATE PROCEDURE sp_delete_participante(IN _id INT)
             BEGIN
+                delete from `Historial_usuario_evento` where  `fk_participante`= _id; 
                 delete from `Participante` WHERE `id` = _id;
+
             END
 SQL;
         DB::connection()->getPdo()->exec($sql);

@@ -7,8 +7,7 @@
     <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
 		<form method="POST" action="{{ route('participantes.update', $participantes_lista->id) }}">
 			{!!method_field('PUT')!!}
-			{!!csrf_field()!!}
-             
+			{!!csrf_field()!!}       
 			<label for="cedula"><b>cedula</b></label>
 			<div class="form-group">
 				<input  class="form-control" type="number" name="cedula"  class="form-control input-lg" value="{{$participantes_lista->cedula}}">

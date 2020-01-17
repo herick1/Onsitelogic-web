@@ -65,8 +65,15 @@ class ParticipanteController extends Controller
                     'p7' => $request->input('telefono'),
                     'p8' => $request->input('tipo'),
                 ));
-        $participantes_lista = DB::table('Participante')->get();
-        return view('participantes.index' , compact('participantes_lista'));
+        //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
+        $eventosGet ="Seleccione un evento";
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+                                                   FROM Participante p"
+        ));
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
 
     /**
@@ -119,8 +126,15 @@ class ParticipanteController extends Controller
                     'p8' => $request->input('telefono'),
                     'p9' => $request->input('tipo'),
                 ));
-        $participantes_lista = DB::table('Participante')->get();
-        return view('participantes.index' , compact('participantes_lista'));
+        //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
+        $eventosGet ="Seleccione un evento";
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+                                                   FROM Participante p"
+        ));
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
 
     /**
@@ -135,8 +149,15 @@ class ParticipanteController extends Controller
                 array(
                     'p0' => $id
                 ));
-        $participantes_lista = DB::table('Participante')->get();
-        return view('participantes.index' , compact('participantes_lista'));
+        //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
+        $eventosGet ="Seleccione un evento";
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+                                                   FROM Participante p"
+        ));
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
 
     /**
@@ -145,9 +166,17 @@ class ParticipanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
     */
-    public function busquedaEvento($idEvento = 1, $nombre= 'Seleccone un evento') 
+    public function busquedaEvento($idEvento = 1) 
     {
-        $eventosGet = $nombre;
+       $eventosGets = DB::select(DB::raw("SELECT nombre
+                                          FROM Evento
+                                          WHERE id=$idEvento"
+        ));
+        $eventosGet = null;
+        foreach ($eventosGets as $eventosGeValue) {
+            $eventosGet=$eventosGeValue->nombre;
+        }
+        if(!$eventosGet) $eventosGet="Seleccione un evento";
         $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia
                                                    FROM Participante p, historial_usuario_evento h
                                                    WHERE p.id=fk_participante AND h.fk_evento=$idEvento"

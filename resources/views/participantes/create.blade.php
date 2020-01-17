@@ -64,7 +64,7 @@
 			</div>
 
 			<label for="tipo"><b>Tipo</b></label>
-			<select class="card text-left p-2" name="tipo">
+			<select class="card text-left p-2" name="tipo" >
 			       <option selected value="Visitante">Visitante</option>
 			       <option value="Exponente">Exponente</option> 
 			       <option  value="Asesor">Asesor</option> 
