@@ -223,8 +223,8 @@ class ParticipanteController extends Controller
 
 
     public function buscador(Request $request){
-        $idEventoSeleccionado = intval($request->input('probando'));
-        $palabra = $request->input('search');
+        $idEventoSeleccionado = 1;
+        $palabra = $request->texto;
 
         $eventosGets = DB::select(DB::raw("SELECT nombre
                                           FROM Evento
@@ -252,6 +252,6 @@ class ParticipanteController extends Controller
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));      
+        return view('participantes.tabla' , compact('participantes_lista', 'eventos', 'eventosGet'));      
     }
 }
