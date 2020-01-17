@@ -11,21 +11,21 @@
 
 			<label for="tipo"><b> Tipo</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="tipo" >
+				<input  class="form-control input-lg" type="text" name="tipo" required>
 				{!! $errors->first('tipo', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="nombre"><b>Nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="nombre">
+				<input  class="form-control input-lg" type="text" name="nombre" required>
 				{!! $errors->first('nombre', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="cantidad_de_personas"><b>Cantidad de personas</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="cantidad_de_personas" >
+				<input  class="form-control input-lg" type="number" name="cantidad_de_personas" >
 				{!! $errors->first('cantidad_de_personas', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>

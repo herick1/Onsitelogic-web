@@ -10,14 +10,14 @@
 			{!!csrf_field()!!}
 			<label for="cedula"><b>cedula</b></label>
 			<div class="form-group">
-				<input  class="form-control" type="number" name="cedula"  class="form-control input-lg" >
+				<input  class="form-control" type="number" name="cedula"  class="form-control input-lg" required>
 				{!! $errors->first('cedula', '<span class=error>:participantes>/span>')!!} 
 			    </input>
 		    </div>
 
 			<label for="primer_nombre"><b>primer nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_nombre" >
+				<input  class="form-control input-lg" type="text" name="primer_nombre" required>
 				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
@@ -31,7 +31,7 @@
 
 			<label for="primer_nombre"><b>primer apellido</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_apellido">
+				<input  class="form-control input-lg" type="text" name="primer_apellido" required>
 				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
@@ -44,14 +44,14 @@
 			</div>
 			<label for="email"><b>Email</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="email" >
+				<input  class="form-control input-lg" type="email" name="email" required>
 				{!! $errors->first('email', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="fecha_de_nacimiento"><b>Fecha de nacimiento</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="date" name="fecha_de_nacimiento">
+				<input  class="form-control input-lg" type="date" name="fecha_de_nacimiento" required>
 				{!! $errors->first('fecha_de_nacimiento', '<span class=error>:participantes>/span>')!!} 
 				</input>		
 			</div>

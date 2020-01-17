@@ -25,7 +25,7 @@
 
 			<label for="cantidad_de_personas"><b>Cantidad de personas</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="cantidad_de_personas" value="{{$eventos_lista->cantidad_de_personas }}">
+				<input  class="form-control input-lg" type="number" name="cantidad_de_personas" value="{{$eventos_lista->cantidad_de_personas }}">
 				{!! $errors->first('cantidad_de_personas', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
