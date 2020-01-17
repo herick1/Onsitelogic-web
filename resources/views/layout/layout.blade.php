@@ -23,7 +23,7 @@
 		</style>
 	</head>
 
-	<body>
+	<body style="padding-top:2.5rem! important">
 
 		<nav class="navbar navbar-dark fixed-top bg-info shadow ">
 		  <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center" href="/">Proyecto OnsiteLogic</a>

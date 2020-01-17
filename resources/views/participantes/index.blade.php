@@ -17,7 +17,7 @@
             <div class="cntnr-padding" style="margin-bottom: 15px;margin-top:15px;">
                 <div class="row">
                         <div class="input-group">
-                          <input name="search" type="search" class="form-control" placeholder="Search for...">
+                          <input id="search" name="search" type="search" class="form-control" placeholder="Search for...">
                           <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Search</button>
                           </span>
@@ -37,6 +37,19 @@
                 </div>
             </div>
         </form>  
+
+        <script>
+            
+            window.addEventListener('load',function(){
+                document.getElementById("search").addEventListener("keyup", () => {
+                if((document.getElementById("search").value.length)>=1)
+                    fetch(`/participantes/buscador?search=${document.getElementById("search").value}`,{ method:'get' })
+                    .then(response  =>  response.text() )
+                else
+                    document.getElementById("resultados").innerHTML = ""
+                })
+            });  
+        </script>
 
         <div class="table-responsive">
             <table class="table table-striped table-sm">
