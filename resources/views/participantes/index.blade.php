@@ -64,13 +64,31 @@
 						<td>{{$participante->email}}</td>
 						<td> 	
                             @if($participante->asistencia == 1)
-                                <button class="btn btn-success" style="width: 50px;">
-                                Si
-                                </button>
+                                @if($participante->idHistorial != 0)
+                                    <form style="display:inline" method="POST" action="{{route('UpdateAsistencia', [$participante->idHistorial,0])}}">
+                                        {!!csrf_field()!!}
+                                            <button class="btn btn-success"  type="submit" style="width: 50px;">
+                                            Si
+                                            </button>                 
+                                    </form>
+                                @else
+                                    <button class="btn btn-success" style="width: 50px;">
+                                    Si
+                                    </button>
+                                @endif
                             @else
-                                <button class="btn btn-danger" style="width: 50px;">
-                                No
-                                </button>
+                                @if($participante->idHistorial != 0)
+                                    <form style="display:inline" method="POST" action="{{route('UpdateAsistencia', [$participante->idHistorial, 1])}}">
+                                        {!!csrf_field()!!}
+                                            <button class="btn btn-danger"  type="submit" style="width: 50px;">
+                                            No
+                                            </button>                 
+                                    </form>
+                                @else
+                                    <button class="btn btn-danger" style="width: 50px;">
+                                    No
+                                    </button>
+                                @endif
                             @endif					
 						</td>
 						<td>

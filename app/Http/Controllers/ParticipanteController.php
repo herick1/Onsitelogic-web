@@ -22,7 +22,7 @@ class ParticipanteController extends Controller
     public function index()
     {
         $eventosGet = "Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
@@ -67,7 +67,7 @@ class ParticipanteController extends Controller
                 ));
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $eventosGet ="Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
@@ -128,7 +128,7 @@ class ParticipanteController extends Controller
                 ));
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $eventosGet ="Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
@@ -151,7 +151,7 @@ class ParticipanteController extends Controller
                 ));
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $eventosGet ="Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
@@ -177,9 +177,43 @@ class ParticipanteController extends Controller
             $eventosGet=$eventosGeValue->nombre;
         }
         if(!$eventosGet) $eventosGet="Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
                                                    FROM Participante p, historial_usuario_evento h
                                                    WHERE p.id=fk_participante AND h.fk_evento=$idEvento"
+        ));
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
+    public function UpdateAsistencia($id, $asistencia) 
+    {
+        DB::select('CALL sp_update_asistencia(:p0, :p1)',
+                array(
+                    'p0' => $id,
+                    'p1' => $asistencia
+
+                ));
+        //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer click en la asistencia
+       $eventosGets = DB::select(DB::raw("SELECT e.nombre
+                                          FROM Evento e , historial_usuario_evento h
+                                          WHERE e.id=fk_evento AND h.id = $id"
+        ));
+        $eventosGet = null;
+        foreach ($eventosGets as $eventosGeValue) {
+            $eventosGet=$eventosGeValue->nombre;
+        }
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
+                                                   FROM Participante p, historial_usuario_evento h
+                                                   WHERE p.id=fk_participante AND 
+                                                   h.fk_evento in (select fk_evento from  historial_usuario_evento
+                                                    where id = $id)"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"

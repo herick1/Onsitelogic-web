@@ -48,3 +48,30 @@
        constraint fk_eventHistorial foreign key(fk_evento) references Evento(id),
        constraint CK_boo_asistencia CHECK (asistencia IN (0, 1))
     );
+
+
+    DELIMITER $$ 
+      CREATE PROCEDURE sp_insertar_historial(IN vcodigo int)
+      BEGIN
+          DECLARE accion INT DEFAULT 0;
+          DECLARE vcantidad INT;
+
+          DECLARE cursor_1 CURSOR FOR
+          SELECT id
+          FROM evento;
+       
+          DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET accion = 1;
+         
+          OPEN cursor_1;
+          REPEAT
+              FETCH cursor_1 INTO vcantidad;
+              
+              INSERT INTO historial_usuario_evento(asistencia,fk_participante, fk_evento) VALUES
+                (0,vcodigo, vcantidad) ;
+              
+          UNTIL accion END REPEAT;
+          CLOSE cursor_1;
+         
+      END$$
+    DELIMITER ;
+
