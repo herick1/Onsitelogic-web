@@ -13,11 +13,11 @@
       </div>
     </div>
 
-        <form method="GET" class="form-inline ml-3">
+        <form method="GET" id="searchform" class="form-inline ml-3" action="/buscador">
             <div class="cntnr-padding" style="margin-bottom: 15px;margin-top:15px;">
                 <div class="row">
                         <div class="input-group">
-                          <input id="search" name="search" type="search" class="form-control" placeholder="Search for...">
+                          <input id="search" name="search" class="form-control" placeholder="Search for...">
                           <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Search</button>
                           </span>
@@ -28,7 +28,7 @@
             </div>
             <div class="dropdown show">
                 <a class="btn btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{$eventosGet}}
+                    <input name="probando" id="probando" value="1" class="d-none"></input>{{$eventosGet}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     @foreach($eventos as $evento)
@@ -40,15 +40,15 @@
 
         <script>
             
-            window.addEventListener('load',function(){
-                document.getElementById("search").addEventListener("keyup", () => {
-                if((document.getElementById("search").value.length)>=1)
-                    fetch(`/participantes/buscador?search=${document.getElementById("search").value}`,{ method:'get' })
-                    .then(response  =>  response.text() )
-                else
-                    document.getElementById("resultados").innerHTML = ""
-                })
-            });  
+        window.addEventListener('load',function(){
+            document.getElementById("search").addEventListener("keyup", () => {
+            if((document.getElementById("search").value.length)>=1)
+                console.log(document.getElementById("search").value);
+
+            else
+                console.log("nada")
+            })
+        });  
         </script>
 
         <div class="table-responsive">

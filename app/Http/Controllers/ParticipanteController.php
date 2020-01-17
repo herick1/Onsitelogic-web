@@ -221,13 +221,34 @@ class ParticipanteController extends Controller
         return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
 
-    public function buscador(Request $request, $palabra){
 
-        $eventosGet = "Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
+    public function buscador(Request $request){
+        $idEventoSeleccionado = intval($request->input('probando'));
+        $palabra = $request->input('search');
+
+        $eventosGets = DB::select(DB::raw("SELECT nombre
+                                          FROM Evento
+                                          WHERE id = $idEventoSeleccionado"
+        ));
+        $eventosGet = null;
+        foreach ($eventosGets as $eventosGeValue) {
+            $eventosGet=$eventosGeValue->nombre;
+        }
+        if(!$eventosGet){
+            $eventosGet="Seleccione un evento";
+            $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p
                                                    where p.pimer_nombre like '%$palabra%'" 
-        ));
+            ));
+        }else{
+            $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
+                                                       FROM Participante p, historial_usuario_evento h
+                                                       WHERE p.pimer_nombre like '%$palabra%' and p.id=fk_participante AND
+                                                       h.fk_evento in (select fk_evento from  historial_usuario_evento
+                                                    where id = $idEventoSeleccionado)" 
+            ));
+        }
+
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
