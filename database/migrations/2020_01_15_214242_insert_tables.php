@@ -1523,24 +1523,24 @@ insert into Lugar (id, fk_Lugar, tipo, nombre ) values
 (1600, 462, 'Parroquia', '23 de enero');
 
 
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (26089396, 'erick', 'daniel', 'navarro', 'hernandez', 'erick200@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (26393454, 'Maria', 'Fernanda', 'Mendoza', 'Diaz', 'mariafernanda@hotmail.com', 'Asesor');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (27394827, 'Jesus', 'Eduardo', 'Navaz', 'Aponte', 'jesuseduardo@hotmail.com', 'Exponente');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (23847372, 'Felipe', 'Mauricio', 'Contreras', 'Mejias', 'felipemauricio@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (29384723, 'Antonio', 'Jose', 'Paz', 'Bustamante', 'antoniojose@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (25837263, 'Pedro', 'Pacheco', 'Alvarado', 'Stiffano', 'pedropacheco@hotmail.com', 'Exponente');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (28343212, 'Jose', 'Gregorio', 'Mujica', 'Rivera', 'josegregorio@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (30234323, 'Daniel', 'Eduardo', 'Diaz', 'Diaz', 'danieldiaz@hotmail.com', 'Asesor');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (8373432, 'Pedro', 'Miguel', 'Fumero', 'Rodriguez', 'pedromiguel@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (25847382, 'Jose', 'Manuel', 'Contreras', 'Mejias', 'josemanuel@hotmail.com', 'Exponente');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (23485749, 'Antonio', 'Jose', 'Batista', 'Bustamante', 'batista@hotmail.com', 'Asesor');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (24856746, 'Cariana', 'Andrea', 'Salvador', 'Perez', 'cariana@hotmail.com', 'Exponente');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (26384732, 'Angela', 'Sofia', 'Mero', 'Martinez', 'angelasofia@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (23847362, 'Mariana', 'Del Carmen', 'Acevedo', 'Mendoza', 'mariana@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (21384932, 'Neider', 'Eduardo', 'Bonadio', 'Aponte', 'neider@hotmail.com', 'Exponente');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (22343738, 'Jesus', 'Mathias', 'Perez', 'Castillo', 'mathias@hotmail.com', 'Asesor');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (29384738, 'Jose', 'Paz', 'Castillo', 'Barrios', 'josepaz@hotmail.com', 'Visitante');
-insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo) VALUES (31283728, 'Carlos', 'Jose', 'Fernandez', 'Hidalgo', 'carlosjose@hotmail.com', 'Asesor');
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (26089396, 'erick', 'daniel', 'navarro', 'hernandez', 'erick200@hotmail.com', 'Visitante', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (26393454, 'Maria', 'Fernanda', 'Mendoza', 'Diaz', 'mariafernanda@hotmail.com', 'Asesor', 1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (27394827, 'Jesus', 'Eduardo', 'Navaz', 'Aponte', 'jesuseduardo@hotmail.com', 'Exponente', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (23847372, 'Felipe', 'Mauricio', 'Contreras', 'Mejias', 'felipemauricio@hotmail.com', 'Visitante', 1598);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (29384723, 'Antonio', 'Jose', 'Paz', 'Bustamante', 'antoniojose@hotmail.com', 'Visitante', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (25837263, 'Pedro', 'Pacheco', 'Alvarado', 'Stiffano', 'pedropacheco@hotmail.com', 'Exponente', 1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (28343212, 'Jose', 'Gregorio', 'Mujica', 'Rivera', 'josegregorio@hotmail.com', 'Visitante', 1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (30234323, 'Daniel', 'Eduardo', 'Diaz', 'Diaz', 'danieldiaz@hotmail.com', 'Asesor', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (8373432, 'Pedro', 'Miguel', 'Fumero', 'Rodriguez', 'pedromiguel@hotmail.com', 'Visitante', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (25847382, 'Jose', 'Manuel', 'Contreras', 'Mejias', 'josemanuel@hotmail.com', 'Exponente', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (23485749, 'Antonio', 'Jose', 'Batista', 'Bustamante', 'batista@hotmail.com', 'Asesor', 1598);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (24856746, 'Cariana', 'Andrea', 'Salvador', 'Perez', 'cariana@hotmail.com', 'Exponente', 1559);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (26384732, 'Angela', 'Sofia', 'Mero', 'Martinez', 'angelasofia@hotmail.com', 'Visitante', 1599);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (23847362, 'Mariana', 'Del Carmen', 'Acevedo', 'Mendoza', 'mariana@hotmail.com', 'Visitante',1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (21384932, 'Neider', 'Eduardo', 'Bonadio', 'Aponte', 'neider@hotmail.com', 'Exponente',1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (22343738, 'Jesus', 'Mathias', 'Perez', 'Castillo', 'mathias@hotmail.com', 'Asesor',1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (29384738, 'Jose', 'Paz', 'Castillo', 'Barrios', 'josepaz@hotmail.com', 'Visitante',1600);
+insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (31283728, 'Carlos', 'Jose', 'Fernandez', 'Hidalgo', 'carlosjose@hotmail.com', 'Asesor',1600);
 
 
 insert into Evento(id,tipo,nombre,fecha_inicio, fecha_fin) values(1,'Conferencia', 'Evenpro reunion', '2020-02-01','2020-02-01');

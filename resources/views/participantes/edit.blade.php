@@ -1,53 +1,87 @@
-@extends('layout.layout')
-@section('contenido')
-
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Editar un participante</h1>
-    </div>
-    <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
+    <div class="text-left">
 		<form method="POST" action="{{ route('participantes.update', $participantes_lista->id) }}">
 			{!!method_field('PUT')!!}
 			{!!csrf_field()!!}       
 			<label for="cedula"><b>cedula</b></label>
 			<div class="form-group">
-				<input  class="form-control" type="number" name="cedula"  class="form-control input-lg" value="{{$participantes_lista->cedula}}" required>
+				<input  class="form-control" type="number" max=999999999 name="cedula"  class="form-control input-lg" value="{{$participantes_lista->cedula}}"  required >
 				{!! $errors->first('cedula', '<span class=error>:participantes>/span>')!!} 
 			    </input>
 		    </div>
 
 			<label for="primer_nombre"><b>primer nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_nombre" value="{{$participantes_lista->pimer_nombre}}" required>
+				<input  class="form-control input-lg" type="text" maxlength="30" name="primer_nombre" value="{{$participantes_lista->pimer_nombre}}" required>
 				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
-			<label for="primer_nombre"><b>Segundo nombre</b></label>
+			<label for="segundo_apellido"><b>Segundo nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="segundo_nombre" value="{{$participantes_lista->segundo_nombre}}" >
+				<input  class="form-control input-lg" type="text" name="segundo_nombre" value="{{$participantes_lista->segundo_nombre}}" maxlength="60" >
 				{!! $errors->first('segundo_nombre', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
-			<label for="primer_nombre"><b>primer apellido</b></label>
+			<label for="primer_apellido"><b>primer apellido</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_apellido" value="{{$participantes_lista->primer_apellido}}" required>
+				<input  class="form-control input-lg" type="text" name="primer_apellido" value="{{$participantes_lista->primer_apellido}}" maxlength="30" required>
 				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
-			<label for="primer_nombre"><b>Segundo apellido</b></label>
+			<label for="segundo_apellido"><b>Segundo apellido</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="segundo_apellido" value="{{$participantes_lista->segundo_apellido}}">
+				<input  class="form-control input-lg" type="text" name="segundo_apellido"  maxlength="60" value="{{$participantes_lista->segundo_apellido}}">
 				{!! $errors->first('segundo_apellido', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 			<label for="email"><b>Email</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="email" name="email" value="{{$participantes_lista->email}}" required>
+				<input  class="form-control input-lg" type="email" name="email" value="{{$participantes_lista->email}}" maxlength="200" required>
 				{!! $errors->first('email', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
+
+			<label for="lugar"><b>Dirección</b></label>
+			<div class="row p-3">
+			    <div id="contenedor1">
+					<p>estado</p>
+					<select id="estadoSelect" class="card text-left p-2" onchange="estado()">
+		                <option Select value="{{$participantes_lista->estadoID}}">{{$participantes_lista->estadoNombre}}</option>
+		                <optgroup label="opciones"> 
+		              	<option  value="0">Seleccione un estado</option>
+			                @foreach($estados as $estado)
+			                    <option  value="{{$estado->id}}">{{$estado->nombre}}</option>
+			                @endforeach
+		              	</optgroup>
+					</select>
+				</div>
+			    <div id="contenedor2">
+			    	<p>Municipio</p>
+					<select id="municipioSelect" class="card text-left p-2">
+		                <option Select value="{{$participantes_lista->municipioID}}">{{$participantes_lista->municipioNombre}}</option>
+		                <optgroup label="opciones"> 
+		              	<option  value="0">Seleccione un municipio</option>
+			                @foreach($municipios as $municipio)
+			                    <option  value="{{$municipio->id}}">{{$municipio->nombre}}</option>
+			                @endforeach
+		              	</optgroup>
+					</select>
+			    </div>			
+			    <div id="contenedor3">
+			    	<p>Parroquia</p>
+					<select id="parroquiaSelect" class="card text-left p-2">
+		                <option Select value="{{$participantes_lista->parroquiaID}}">{{$participantes_lista->parroquiaNombre}}</option>
+		                <optgroup label="opciones"> 
+		              	<option  value="0">Seleccione una parroquia</option>
+			                @foreach($parroquias as $parroquia)
+			                    <option  value="{{$parroquia->id}}">{{$parroquia->nombre}}</option>
+			                @endforeach
+		              	</optgroup>
+					</select>
+			    </div>
+			</div>	
 
 			<label for="fecha_de_nacimiento"><b>Fecha de nacimiento</b></label>
 			<div class="form-group">
@@ -58,7 +92,7 @@
 
 			<label for="telefono"><b>Telefono</b>	
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="telefono" value="{{$participantes_lista->telefono}}">
+				<input  class="form-control input-lg" type="text" name="telefono" value="{{$participantes_lista->telefono}}" maxlength="30">
 				{!! $errors->first('telefono', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
@@ -66,10 +100,12 @@
 			<label for="tipo"><b>Tipo</b></label>
 			<select class="card text-left p-2" name="tipo">
 			       <option class="dropdown-menu" selected value="{{$participantes_lista->tipo}}">{{$participantes_lista->tipo}}</option>
-			       <option value="Visitante">Visitante</option>
-			       <option value="Exponente">Exponente</option> 
-			       <option  value="Asesor">Asesor</option> 
-			       <option value="Otros">Otros</option> 
+			       <optgroup label="opciones">
+				       <option value="Visitante">Visitante</option>
+				       <option value="Exponente">Exponente</option> 
+				       <option  value="Asesor">Asesor</option> 
+				       <option value="Otros">Otros</option> 
+			   	   </optgroup> 
 			</select>
 
 			<br>
@@ -84,4 +120,26 @@
 		</form>
 	</div>
 
-@stop
+
+
+<script type="text/javascript">
+	$(function() {
+
+  		estado = function(){
+
+            fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
+ 									document.getElementById("contenedor3").innerHTML = '<p>Parroquia</p><select id="parroquiaSelect" class="card text-left p-2"><option value="0">Seleccione una parroquia</option></select>'
+        	})
+  		}
+  		buscarParroquia = function(){
+
+            fetch(`/lugar/buscadorParroquia?municipio=${document.getElementById("municipioSelect").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("contenedor3").innerHTML = html
+        	})
+  		}
+		
+	})
+</script>

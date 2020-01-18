@@ -141,12 +141,31 @@ class ParticipanteController extends Controller
     public function edit($id)
     {
         //presentar formulario para actualizar mensaje
-        $participantes_lista = DB::table('Participante')->where('id',$id)->first();
+        $participantes_listas = DB::select(DB::raw("SELECT p.* , l3.id as parroquiaID , l3.nombre as parroquiaNombre,
+                                        l2.id as municipioID, l2.nombre as municipioNombre, l1.id as estadoID , l1.nombre as estadoNombre
+                                        FROM Participante p, lugar l1, lugar l2, lugar l3
+                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id"
+        ));
+        //esto lo hago asi ya que primero lo busco pero el problema es que este participante no tiene las columnas que me faltan del lugar , es por esto que lo traigo asi 
+        $participantes_lista=DB::table('Participante')->where('id',$id)->first();
+        foreach ($participantes_listas as $participanteID) {
+            $participantes_lista=$participanteID;
+            $estadoID= $participanteID->estadoID;
+            $municipioID= $participanteID->municipioID;
+        }
         $estados = DB::select(DB::raw("SELECT * 
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('participantes.edit', compact('participantes_lista', 'estados'));
+        $municipios = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where fk_Lugar = $estadoID and tipo = 'Municipio'"
+        ));
+        $parroquias = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where fk_Lugar = $municipioID and tipo = 'Municipio'"
+        ));
+        return view('participantes.edit', compact('participantes_lista', 'estados', 'municipios', 'parroquias'));
     }
 
     /**
