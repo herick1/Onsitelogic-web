@@ -95,9 +95,9 @@
 			<br>
 			<br>			
 			<input  class="btn btn-info" type="submit" value="enviar">
-			<a href="{{route('participantes.index')}}" class="btn btn-outline-info" role="button">
-    			Volver
-			</a>
+	        <a  type="button" class="btn btn-info" data-dismiss="modal">
+	            Volver
+	        </a>
 		</form>
 		</form>
 	</div>

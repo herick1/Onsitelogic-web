@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth',['except'=> ['create','store', 'index', 'show', 'edit','update', 'destroy']]);
-    }
-
     /**
      * Display a listing of the resource.
      *

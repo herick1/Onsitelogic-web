@@ -16,10 +16,23 @@
     <div class="row">
         <div id="contenedorEvento">
             <select id="eventoSelect" class="form-control" onchange="selecionadounEvento()">
-                <option Select value="0">Seleccione un evento</option>
+
+                <!-- caso de recargar la pagina y vienes de un update o un delete-->
+                @if($eventoAntesSeleccionado)
+                        <option Select value="{{$eventoAntesSeleccionado->id}}">{{$eventoAntesSeleccionado->nombre}}</option>
+                    <optgroup label="opciones">
+                        <option value="0">Seleccione un evento</option>
+                @else
+                    <option Select value="0">Seleccione un evento</option>
+                @endif
+
                 @foreach($eventos as $evento)
                     <option  value="{{$evento->id}}">{{$evento->nombre}}</option>
                 @endforeach
+                <!--para completar el gupo en caso de existir-->
+                @if($eventoAntesSeleccionado)
+                        </optgroup>
+                @endif
             </select>
         </div>
         <b>

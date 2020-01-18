@@ -9,7 +9,7 @@
 			    </input>
 		    </div>
 
-			<label for="primer_nombre"><b>primer nombre</b></label>
+			<label for="primer_nombre"><b>Primer nombre</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" maxlength="30" name="primer_nombre" value="{{$participantes_lista->pimer_nombre}}" required>
 				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} 
@@ -23,7 +23,7 @@
 				</input>
 			</div>
 
-			<label for="primer_apellido"><b>primer apellido</b></label>
+			<label for="primer_apellido"><b>Primer apellido</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="primer_apellido" value="{{$participantes_lista->primer_apellido}}" maxlength="30" required>
 				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} 
@@ -112,9 +112,9 @@
 			<br>	
 			<div class="form-group row col-12">
 				<input  class="btn btn-info mr-2" type="submit" value="Enviar">
-				<a href="{{route('participantes.index')}}" class="btn btn-outline-info" role="button">
-        			Volver
-    			</a>
+		        <a  type="button" class="btn btn-info" data-dismiss="modal">
+		            Volver
+		        </a>
 			</div>
 		</form>
 		</form>
@@ -124,9 +124,7 @@
 
 <script type="text/javascript">
 	$(function() {
-
   		estado = function(){
-
             fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
             .then(response  =>  response.text() )
             .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
@@ -142,4 +140,6 @@
   		}
 		
 	})
+
+	
 </script>

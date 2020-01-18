@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class ParticipanteController extends Controller
 {
-
-    public function __construct()
-    {
-        //$this->middleware('auth',['except'=> ['create','store', 'index', 'show', 'edit','update', 'destroy']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +25,9 @@ class ParticipanteController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
+        //esta variable solo se utiliza la veces que hay que recargar la pagina por una actualizacion, aupdate de asistencia o cuando se elimina un participante y ya se habia selecionado un evento antes
+        $eventoAntesSeleccionado= null;
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
     }
 
     /**
@@ -56,7 +52,7 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request)
     {
-        //metodo post
+        //esta variable solo se utiliza la veces que hay que recargar la pagina por una actualizacion, aupdate de asistencia o cuando se elimina un participante y ya se habia selecionado un evento antes
         $mensaje= $request->input('Participante');       
         DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 )',
                 array(
@@ -116,7 +112,8 @@ class ParticipanteController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
+        $eventoAntesSeleccionado= null;
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
     }
 
     /**
@@ -203,7 +200,8 @@ class ParticipanteController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
+        $eventoAntesSeleccionado= null;
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
     }
 
     /**
@@ -229,7 +227,8 @@ class ParticipanteController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));        
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
+        $eventoAntesSeleccionado= null;
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
     }
 
     /**
@@ -268,21 +267,28 @@ class ParticipanteController extends Controller
                     'p1' => $asistencia
 
                 ));
-        /*el problema de implementar esto es que el select de los eventos se va a resetar porque stas volviendo 
-        acargar la vista entonces es ilogico que  busques sino la vas a poder volver a mostrar bien
         $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
-                                                   FROM Participante p, historial_usuario_evento h
-                                                   WHERE p.id=fk_participante AND 
-                                                   h.fk_evento in (select fk_evento from  historial_usuario_evento
-                                                    where id = $id)"
-        ));*/
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                   FROM Participante p"
+                                                   FROM Participante p, historial_usuario_evento h, historial_usuario_evento j
+                                                   WHERE p.id=h.fk_participante AND 
+                                                   h.fk_evento=j.fk_evento AND j.id = $id"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos'));
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));
+        //esto es para no perder los datos del select del index al refrescar la pagina
+        $eventoAntesSeleccionado=null;
+        $eventoAntesSeleccionados=DB::select(DB::raw("SELECT e.id, e.nombre
+                                                    from Evento e, historial_usuario_evento h
+                                                    WHERE e.id=h.fk_evento AND h.id = $id"
+        ));
+        foreach ($eventoAntesSeleccionados as $evento) {
+            $eventoAntesSeleccionado=$evento;
+        }
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
     }
 
     /**
@@ -306,7 +312,7 @@ class ParticipanteController extends Controller
                                                            FROM Participante p, historial_usuario_evento h
                                                            WHERE p.id=fk_participante AND
                                                            h.fk_evento =$idEventoSeleccionado and
-                                                           (p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%') " 
+                                                           p.cedula like '$palabra%'" 
                 ));
             }
         //busqueda por los demas campos
