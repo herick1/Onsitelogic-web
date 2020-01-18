@@ -1,7 +1,6 @@
 @extends('layout.layout')
 
 @section('contenido')
-
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Participantes</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
@@ -15,6 +14,7 @@
     <div class="row">
         <div id="contenedorEvento">
             <select id="eventoSelect" class="form-control" onchange="selecionadounEvento()">
+                <option Select value="0">Seleccione un evento</option>
                 @foreach($eventos as $evento)
                     <option  value="{{$evento->id}}">{{$evento->nombre}}</option>
                 @endforeach
@@ -60,7 +60,14 @@
         window.addEventListener('load',function(){
             document.getElementById("texto").addEventListener("keyup", () => {
                 if((document.getElementById("texto").value.length)>=1)
-                    fetch(`/nombre/buscador?texto=${document.getElementById("texto").value}`,{ method:'get' })
+                    fetch(`/nombre/buscador?texto=${document.getElementById("texto").value}&evento=${document.getElementById("eventoSelect").value}`,{ method:'get' })
+                    .then(response  =>  response.text() )
+                    .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
+                //caso especial que estes borrando todo y quieres denuevo todos los registros de cualquier evento
+                //a simple vista parece que es redundante este espacio de codigo pero si se agrega al de arriba 
+                //ocurre un internal error
+                if((document.getElementById("texto").value.length)==0)
+                    fetch(`/nombre/buscador?texto=${document.getElementById("texto").value}&evento=${document.getElementById("eventoSelect").value}`,{ method:'get' })
                     .then(response  =>  response.text() )
                     .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
             })
@@ -71,7 +78,9 @@
         selecionadounEvento = function(){
             fetch(`/busquedaEvento/${document.getElementById("eventoSelect").value}`,{ method:'get' })
             .then(response  =>  response.text() )
-                    .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
+                    .then(html      =>  {   document.getElementById("contenedor").innerHTML = html ;
+                                            document.getElementById("texto").value = ""
+                     })
         }
     })
     </script>

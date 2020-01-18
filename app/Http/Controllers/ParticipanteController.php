@@ -21,7 +21,6 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        $eventosGet = "Seleccione un evento";
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
@@ -32,7 +31,7 @@ class ParticipanteController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet', 'estados'));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
     }
 
     /**
@@ -110,11 +109,14 @@ class ParticipanteController extends Controller
                     'p2' =>  $eventoValue->id,
             ));
         }
-        $eventosGet ="Seleccione un evento";
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
     }
 
     /**
@@ -140,7 +142,11 @@ class ParticipanteController extends Controller
     {
         //presentar formulario para actualizar mensaje
         $participantes_lista = DB::table('Participante')->where('id',$id)->first();
-        return view('participantes.edit', compact('participantes_lista'));
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));
+        return view('participantes.edit', compact('participantes_lista', 'estados'));
     }
 
     /**
@@ -168,14 +174,17 @@ class ParticipanteController extends Controller
                     'p9' => $request->input('tipo'),
                 ));
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
-        $eventosGet ="Seleccione un evento";
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
     }
 
     /**
@@ -191,14 +200,17 @@ class ParticipanteController extends Controller
                     'p0' => $id
                 ));
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
-        $eventosGet ="Seleccione un evento";
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));        
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados'));
     }
 
     /**
@@ -209,23 +221,19 @@ class ParticipanteController extends Controller
     */
     public function busquedaEvento($idEvento = 1) 
     {
-       $eventosGets = DB::select(DB::raw("SELECT nombre
-                                          FROM Evento
-                                          WHERE id=$idEvento"
-        ));
-        $eventosGet = null;
-        foreach ($eventosGets as $eventosGeValue) {
-            $eventosGet=$eventosGeValue->nombre;
+        //caso en el que se seleccione de nuevo "seleccione un evento" entonces se le dan todos los participantes
+        //de todos los eventos
+        if($idEvento==0){
+            $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
+                                                       FROM Participante p"
+            ));
+        }else{
+            $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
+                                                       FROM Participante p, historial_usuario_evento h
+                                                       WHERE p.id=fk_participante AND h.fk_evento=$idEvento"
+            ));
         }
-        if(!$eventosGet) $eventosGet="Seleccione un evento";
-        $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
-                                                   FROM Participante p, historial_usuario_evento h
-                                                   WHERE p.id=fk_participante AND h.fk_evento=$idEvento"
-        ));
-        $eventos = DB::select(DB::raw("SELECT id, nombre
-                                       from Evento"
-        ));
-        return view('participantes.tabla' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        return view('participantes.tabla' , compact('participantes_lista'));
     }
     /**
      * Remove the specified resource from storage.
@@ -241,58 +249,63 @@ class ParticipanteController extends Controller
                     'p1' => $asistencia
 
                 ));
-        //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer click en la asistencia
-       $eventosGets = DB::select(DB::raw("SELECT e.nombre
-                                          FROM Evento e , historial_usuario_evento h
-                                          WHERE e.id=fk_evento AND h.id = $id"
-        ));
-        $eventosGet = null;
-        foreach ($eventosGets as $eventosGeValue) {
-            $eventosGet=$eventosGeValue->nombre;
-        }
+        /*el problema de implementar esto es que el select de los eventos se va a resetar porque stas volviendo 
+        acargar la vista entonces es ilogico que  busques sino la vas a poder volver a mostrar bien
         $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
                                                    FROM Participante p, historial_usuario_evento h
                                                    WHERE p.id=fk_participante AND 
                                                    h.fk_evento in (select fk_evento from  historial_usuario_evento
                                                     where id = $id)"
+        ));*/
+        $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
+                                                   FROM Participante p"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        return view('participantes.index' , compact('participantes_lista', 'eventos'));
     }
 
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+    */
     public function buscador(Request $request){
-        $idEventoSeleccionado = 1;
+        $idEventoSeleccionado = $request->evento;
         $palabra = $request->texto;
-
-        $eventosGets = DB::select(DB::raw("SELECT nombre
-                                          FROM Evento
-                                          WHERE id = $idEventoSeleccionado"
-        ));
-        $eventosGet = null;
-        foreach ($eventosGets as $eventosGeValue) {
-            $eventosGet=$eventosGeValue->nombre;
-        }
-        if(!$eventosGet){
-            $eventosGet="Seleccione un evento";
-            $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                   FROM Participante p
-                                                   where p.pimer_nombre like '%$palabra%'" 
-            ));
+        //si es numerico lo busco por la cedula sino lo busco por los demas campos
+        if(is_numeric($palabra)){
+            if($idEventoSeleccionado == 0){
+                $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
+                                                       FROM Participante p
+                                                       where p.cedula like '$palabra%'" 
+                ));
+            }else{
+                $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
+                                                           FROM Participante p, historial_usuario_evento h
+                                                           WHERE p.id=fk_participante AND
+                                                           h.fk_evento =$idEventoSeleccionado and
+                                                           (p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%') " 
+                ));
+            }
+        //busqueda por los demas campos
         }else{
-            $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
-                                                       FROM Participante p, historial_usuario_evento h
-                                                       WHERE p.pimer_nombre like '%$palabra%' and p.id=fk_participante AND
-                                                       h.fk_evento in (select fk_evento from  historial_usuario_evento
-                                                    where id = $idEventoSeleccionado)" 
-            ));
+            if($idEventoSeleccionado == 0){
+                $participantes_lista = DB::select(DB::raw("SELECT DISTINCT p.* , 0 as asistencia, 0 as idHistorial
+                                                       FROM Participante p
+                                                       where p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%'" 
+                ));
+            }else{
+                $participantes_lista = DB::select(DB::raw("SELECT DISTINCT p.* , h.asistencia, h.id as idHistorial
+                                                           FROM Participante p, historial_usuario_evento h
+                                                           WHERE  p.id=fk_participante AND
+                                                                h.fk_evento =$idEventoSeleccionado 
+                                                                and (p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%')" 
+                ));
+            }
         }
-
-        $eventos = DB::select(DB::raw("SELECT id, nombre
-                                       from Evento"
-        ));
-        return view('participantes.tabla' , compact('participantes_lista', 'eventos', 'eventosGet'));      
+        return view('participantes.tabla' , compact('participantes_lista'));      
     }
 }
