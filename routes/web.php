@@ -26,7 +26,6 @@ Route::post('UpdateAsistencia/{id?}/{asistencia?}', ['as' => 'UpdateAsistencia',
 
 Route::get('buscador', ['as' => 'buscador', 'uses'=> 'ParticipanteController@buscador']);
 
-
 // RUTA PARA EL BUSCADOR EN TIEMPO REAL
 Route::get('/nombre/buscador','ParticipanteController@buscador');
 

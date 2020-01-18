@@ -1,8 +1,4 @@
-
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Crear un nuevo participante</h1>
-    </div>
-    <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
+    <div class="text-left">
 		<form method="POST" action="{{ route('participantes.store') }}">
 			{!!csrf_field()!!}
 			<label for="cedula"><b>cedula</b></label>

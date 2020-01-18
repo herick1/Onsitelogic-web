@@ -225,7 +225,7 @@ class ParticipanteController extends Controller
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        return view('participantes.tabla' , compact('participantes_lista', 'eventos', 'eventosGet'));
     }
     /**
      * Remove the specified resource from storage.

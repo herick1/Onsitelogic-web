@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
@@ -12,12 +11,12 @@
 
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{asset('static/bootstrap.min.css')}}">
+
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>>
 		<script src="{{asset('static/bootstrap.bundle.min.js')}}"></script>
-		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script src="{{asset('static/sweetalert.min.js')}}"></script>
 		    
 
-		<link href="{{asset('dashboard.css')}}" rel="stylesheet">
 		<style type="text/css">/* Chart.js */
 		    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
 		</style>
@@ -67,7 +66,6 @@
       	<script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
       	<script src="{{asset('static/bootstrap.bundle.min.js')}}"></script>
       	<script src="{{asset('static/feather.min.js')}}"></script>
-      	<script src="{{asset('static/Chart.min.js')}}"></script>
       	<script src="{{asset('static/dashboard.js')}}"></script>
 	</body>
 </html>
