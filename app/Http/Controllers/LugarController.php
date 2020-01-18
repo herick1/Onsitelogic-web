@@ -19,7 +19,12 @@ class LugarController extends Controller
     }
 
     public function buscadorParroquia(Request $request){
-
+        $municipioID = $request->municipio;
+            
+        $select = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where fk_Lugar = $municipioID and tipo = 'Parroquia'"
+        ));
         return view('lugares.selectParroquia' , compact('select'));  
     }
 }

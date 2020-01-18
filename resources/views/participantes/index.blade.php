@@ -5,8 +5,10 @@
       <h1 class="h2">Participantes</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
-            <a data-toggle="modal" data-target="#create" class="btn btn-outline-info ml-4" role="button">
-                Crear un Participante
+            <a data-toggle="modal" data-target="#create" >
+                <button class="btn btn-outline-info ml-4">
+                    Crear un participante
+                </button>
             </a>
         </div>
       </div>
@@ -40,7 +42,7 @@
 
     <!-- modales  -->
     <div class="modal fade" id="create">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4>Crear un nuevo participante</h4>

@@ -3,26 +3,36 @@
 			{!!csrf_field()!!}
 			<label for="cedula"><b>cedula</b></label>
 			<div class="form-group">
-				<input  class="form-control" type="number" name="cedula"  class="form-control input-lg" required>
+				<input   type="number" name="cedula"  class="form-control input-lg" required>
 				{!! $errors->first('cedula', '<span class=error>:participantes>/span>')!!} 
 			    </input>
 		    </div>
 
-    <div id="contenedor1">
-				<select id="estadoSelect" class="form-control" onchange="estado()">
-					<option value="0">---------</option>
-					<option value="1">Venezuela</option>
-					<option value="2">Brasil</option>
-					<option value="3">Peru</option>
-				</select>
-    </div>
 
-    <div id="contenedor2">
-
-    </div>
-    <div id="contenedor3">
-
-    </div>
+			<label for="lugar"><b>Lugar</b></label>
+			<div class="row p-3">
+			    <div id="contenedor1">
+					<p>estado</p>
+					<select id="estadoSelect" class="card text-left p-2" onchange="estado()">
+		                <option Select value="0">Seleccione un estado</option>
+		                @foreach($estados as $estado)
+		                    <option  value="{{$estado->id}}">{{$estado->nombre}}</option>
+		                @endforeach
+					</select>
+				</div>
+			    <div id="contenedor2">
+			    	<p>Municipio</p>
+					<select id="municipioSelect" class="card text-left p-2">
+						<option value="0">Seleccione un municipio</option>
+					</select>
+			    </div>			
+			    <div id="contenedor3">
+			    	<p>Parroquia</p>
+					<select id="parroquiaSelect" class="card text-left p-2">
+						<option value="0">Seleccione una parroquia</option>
+					</select>
+			    </div>
+			</div>	
 
 
 			<label for="primer_nombre"><b>primer nombre</b></label>
@@ -100,12 +110,12 @@
             fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
             .then(response  =>  response.text() )
             .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
- 									document.getElementById("contenedor3").innerHTML = ""
+ 									document.getElementById("contenedor3").innerHTML = '<p>Parroquia</p><select id="parroquiaSelect" class="card text-left p-2"><option value="0">Seleccione una parroquia</option></select>'
         	})
   		}
   		buscarParroquia = function(){
 
-            fetch(`/lugar/buscadorParroquia?municipio=${document.getElementById("municipio").value}`,{ method:'get' })
+            fetch(`/lugar/buscadorParroquia?municipio=${document.getElementById("municipioSelect").value}`,{ method:'get' })
             .then(response  =>  response.text() )
             .then(html      =>  {   document.getElementById("contenedor3").innerHTML = html
         	})
