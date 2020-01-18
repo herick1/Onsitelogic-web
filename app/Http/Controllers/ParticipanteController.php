@@ -63,23 +63,35 @@ class ParticipanteController extends Controller
                     'p7' => $request->input('telefono'),
                     'p8' => $request->input('tipo'),
                 ));
-
-        $id_participante=null;
+        //esto lo hago ya que si comparo directamente en el query me da un error
+        $p0= $request->input('cedula');
+        $p1 = $request->input('email');
+        $p2 =  $request->input('primer_nombre');
+        $p3 =  $request->input('segundo_nombre');
+        $p4 =  $request->input('primer_apellido');
+        $p5 = $request->input('segundo_apellido');
+        $p6 = $request->input('fecha_de_nacimiento');
+        $p7 = $request->input('telefono');
+        $p8 = $request->input('tipo');
+        $id_participante=0;
         //buscamos la id del participante
         $participantesID = DB::select(DB::raw("SELECT id
                                           FROM Participante
-                                          WHERE cedula = $request->input('cedula') and email = $request->input('email')
-                                          and pimer_nombre = $request->input('primer_nombre') 
-                                          and segundo_nombre = $request->input('segundo_nombre') 
-                                          and primer_apellido =  $request->input('primer_apellido') 
-                                          and segundo_apellido = $request->input('segundo_apellido')
-                                          and fecha_de_nacimiento = $request->input('fecha_de_nacimiento')
-                                          and telefono = $request->input('telefono')
-                                          and tipo = $request->input('tipo')"
+                                          WHERE cedula = $p0 and email = '$p1'
+                                          and pimer_nombre = '$p2'
+                                          and segundo_nombre = '$p3'
+                                          and primer_apellido =  '$p4'
+                                          and segundo_apellido = '$p5'
+                                          and fecha_de_nacimiento = '$p6'
+                                          and telefono = '$p7'
+                                          and tipo = '$p8'"
         ));
         foreach ($participantesID as $participanteID) {
             $id_participante=$participanteID->id;
         }
+        $eventos = DB::select(DB::raw("SELECT id, nombre
+                                       from Evento"
+        )); 
         //insertamos al participante en toda la tabla de historial_usuario_evento
         //TODO se puede hacer directo con un trigger (revisar stored procedured en DDL)
         foreach ($eventos as $eventoValue) {
@@ -90,6 +102,7 @@ class ParticipanteController extends Controller
                     'p2' =>  $eventoValue->id,
             ));
         }
+        $eventosGet ="Seleccione un evento";
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));

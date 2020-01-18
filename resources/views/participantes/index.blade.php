@@ -6,7 +6,7 @@
       <h1 class="h2">Participantes</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
-            <a href= "/participantes/create" class="btn btn-outline-info ml-4" role="button">
+            <a data-toggle="modal" data-target="#create" class="btn btn-outline-info ml-4" role="button">
                 Crear un Participante
             </a>
         </div>
@@ -40,6 +40,28 @@
             @include('participantes.tabla')
     </div>
 
+
+
+<div class="modal fade" id="create">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                </button>
+                <h4>Crear</h4>
+            </div>
+            <div class="modal-body">
+                @include('participantes.create')
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" value="Guardar">
+            </div>
+        </div>
+    </div>
+</div>
+
+
         <script>         
             window.addEventListener('load',function(){
                 document.getElementById("texto").addEventListener("keyup", () => {
@@ -47,8 +69,6 @@
                         fetch(`/nombre/buscador?texto=${document.getElementById("texto").value}`,{ method:'get' })
                         .then(response  =>  response.text() )
                         .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
-                    else
-                        document.getElementById("contenedor").innerHTML = ""
                 })
             });
         </script>
