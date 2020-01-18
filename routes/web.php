@@ -29,3 +29,8 @@ Route::get('buscador', ['as' => 'buscador', 'uses'=> 'ParticipanteController@bus
 
 // RUTA PARA EL BUSCADOR EN TIEMPO REAL
 Route::get('/nombre/buscador','ParticipanteController@buscador');
+
+// RUTA PARA EL BUSCADOR EN TIEMPO REAL
+Route::get('/lugar/buscadorMunicipio','LugarController@buscadorMunicipio');
+
+Route::get('/lugar/buscadorParroquia','LugarController@buscadorParroquia');

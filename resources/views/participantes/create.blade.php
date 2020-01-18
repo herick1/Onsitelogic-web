@@ -12,6 +12,23 @@
 			    </input>
 		    </div>
 
+    <div id="contenedor1">
+				<select id="estadoSelect" class="form-control" onchange="estado()">
+					<option value="0">---------</option>
+					<option value="1">Venezuela</option>
+					<option value="2">Brasil</option>
+					<option value="3">Peru</option>
+				</select>
+    </div>
+
+    <div id="contenedor2">
+
+    </div>
+    <div id="contenedor3">
+
+    </div>
+
+
 			<label for="primer_nombre"><b>primer nombre</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="primer_nombre" required>
@@ -77,3 +94,28 @@
 		</form>
 		</form>
 	</div>
+
+
+<script type="text/javascript">
+	$(function() {
+
+  		estado = function(){
+
+            fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
+ 									document.getElementById("contenedor3").innerHTML = ""
+        	})
+  		}
+  		buscarParroquia = function(){
+
+            fetch(`/lugar/buscadorParroquia?municipio=${document.getElementById("municipio").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("contenedor3").innerHTML = html
+        	})
+  		}
+		
+	})
+</script>
+
+	

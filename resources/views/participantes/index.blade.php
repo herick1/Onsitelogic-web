@@ -35,8 +35,8 @@
         <br>
         <br>
     </div>
-        <div id="resultados"></div>
-        <div id="contenedor">
+
+    <div id="contenedor">
             @include('participantes.tabla')
     </div>
 

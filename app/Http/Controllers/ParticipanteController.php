@@ -28,7 +28,11 @@ class ParticipanteController extends Controller
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         ));
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet'));
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'eventosGet', 'estados'));
     }
 
     /**
@@ -38,7 +42,11 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-        return view('participantes.create');
+        $estados = DB::select(DB::raw("SELECT * 
+                                        FROM Lugar 
+                                        where tipo = 'Estado'"
+        ));
+        return view('participantes.create', compact('estados'));
     }
 
     /**
