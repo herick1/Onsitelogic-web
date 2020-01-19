@@ -17,7 +17,8 @@ class ParticipanteController extends Controller
     public function index()
     {
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                   FROM Participante p"
+                                                   FROM Participante p
+                                                    ORDER BY cedula"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
@@ -115,7 +116,8 @@ class ParticipanteController extends Controller
                                        from Evento"
         )); 
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                   FROM Participante p"
+                                                   FROM Participante p
+                                                    ORDER BY cedula"
         ));
         $estados = DB::select(DB::raw("SELECT * 
                                         FROM Lugar 
@@ -139,7 +141,8 @@ class ParticipanteController extends Controller
         //presentar formulario para actualizar mensaje
         $participantes_listas = DB::select(DB::raw("SELECT p.* , l3.nombre as parroquia, l2.nombre as municipio , l1.nombre as estado
                                         FROM Participante p, lugar l1, lugar l2, lugar l3
-                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id"
+                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id
+                                        ORDER BY cedula"
         ));
         foreach ($participantes_listas as $participanteID) {
             $participante=$participanteID;
@@ -159,7 +162,8 @@ class ParticipanteController extends Controller
         $participantes_listas = DB::select(DB::raw("SELECT p.* , l3.id as parroquiaID , l3.nombre as parroquiaNombre,
                                         l2.id as municipioID, l2.nombre as municipioNombre, l1.id as estadoID , l1.nombre as estadoNombre
                                         FROM Participante p, lugar l1, lugar l2, lugar l3
-                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id"
+                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id
+                                        ORDER BY cedula"
         ));
         //esto lo hago asi ya que primero lo busco pero el problema es que este participante no tiene las columnas que me faltan del lugar , es por esto que lo traigo asi 
         $participantes_lista=DB::table('Participante')->where('id',$id)->first();
@@ -213,7 +217,8 @@ class ParticipanteController extends Controller
         }
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                   FROM Participante p"
+                                                   FROM Participante p
+                                                   ORDER BY cedula"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
@@ -240,7 +245,8 @@ class ParticipanteController extends Controller
                 ));
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                   FROM Participante p"
+                                                   FROM Participante p
+                                                    ORDER BY cedula"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
@@ -265,12 +271,14 @@ class ParticipanteController extends Controller
         //de todos los eventos
         if($idEvento==0){
             $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
-                                                       FROM Participante p"
+                                                       FROM Participante p
+                                                       ORDER BY cedula"
             ));
         }else{
             $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
                                                        FROM Participante p, historial_usuario_evento h
-                                                       WHERE p.id=fk_participante AND h.fk_evento=$idEvento"
+                                                       WHERE p.id=fk_participante AND h.fk_evento=$idEvento
+                                                       ORDER BY h.asistencia DESC, cedula"
             ));
         }
         return view('participantes.tabla' , compact('participantes_lista'));
@@ -292,7 +300,8 @@ class ParticipanteController extends Controller
         $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
                                                    FROM Participante p, historial_usuario_evento h, historial_usuario_evento j
                                                    WHERE p.id=h.fk_participante AND 
-                                                   h.fk_evento=j.fk_evento AND j.id = $id"
+                                                   h.fk_evento=j.fk_evento AND j.id = $id
+                                                   ORDER BY h.asistencia DESC, cedula"
         ));
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
@@ -327,14 +336,16 @@ class ParticipanteController extends Controller
             if($idEventoSeleccionado == 0){
                 $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                        FROM Participante p
-                                                       where p.cedula like '$palabra%'" 
+                                                       where p.cedula like '$palabra%'
+                                                       ORDER BY cedula" 
                 ));
             }else{
                 $participantes_lista = DB::select(DB::raw("SELECT p.* , h.asistencia, h.id as idHistorial
                                                            FROM Participante p, historial_usuario_evento h
                                                            WHERE p.id=fk_participante AND
                                                            h.fk_evento =$idEventoSeleccionado and
-                                                           p.cedula like '$palabra%'" 
+                                                           p.cedula like '$palabra%'
+                                                           ORDER BY h.asistencia DESC, cedula" 
                 ));
             }
         //busqueda por los demas campos
@@ -342,14 +353,16 @@ class ParticipanteController extends Controller
             if($idEventoSeleccionado == 0){
                 $participantes_lista = DB::select(DB::raw("SELECT DISTINCT p.* , 0 as asistencia, 0 as idHistorial
                                                        FROM Participante p
-                                                       where p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%'" 
+                                                       where p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%'
+                                                       ORDER BY cedula" 
                 ));
             }else{
                 $participantes_lista = DB::select(DB::raw("SELECT DISTINCT p.* , h.asistencia, h.id as idHistorial
                                                            FROM Participante p, historial_usuario_evento h
                                                            WHERE  p.id=fk_participante AND
                                                                 h.fk_evento =$idEventoSeleccionado 
-                                                                and (p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%')" 
+                                                                and (p.pimer_nombre like '$palabra%' or p.segundo_nombre like '$palabra%' or p.primer_apellido like '$palabra%' or p.segundo_apellido like '$palabra%' or p.email like '$palabra%')
+                                                            ORDER BY h.asistencia DESC, cedula" 
                 ));
             }
         }
