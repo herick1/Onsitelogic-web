@@ -3,7 +3,7 @@
 			{!!csrf_field()!!}
 			<label for="cedula"><b>cedula</b></label>
 			<div class="form-group">
-				<input   type="number" name="cedula"  class="form-control input-lg" max=999999999 required>
+				<input   type="number" name="cedula"  class="form-control input-lg" value="{{old('cedula')}}" max=999999999 required>
 				{!! $errors->first('cedula', '<span class=error>:participantes>/span>')!!} 
 			    </input>
 		    </div>
@@ -11,34 +11,34 @@
 
 			<label for="primer_nombre"><b>primer nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_nombre" maxlength="30" required>
+				<input  class="form-control input-lg" type="text" name="primer_nombre" value="{{old('primer_nombre')}}" maxlength="30" required>
 				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="segundo_nombre"><b>Segundo nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="segundo_nombre" maxlength="60">
+				<input  class="form-control input-lg" type="text" name="segundo_nombre"  value="{{old('segundo_nombre')}}"  maxlength="60">
 				{!! $errors->first('segundo_nombre', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="primer_apellido"><b>primer apellido</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_apellido" maxlength="30" required>
+				<input  class="form-control input-lg" type="text" name="primer_apellido" value="{{old('primer_apellido')}}" maxlength="30" required>
 				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="segundo_apellido"><b>Segundo apellido</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="segundo_apellido" maxlength="60" >
+				<input  class="form-control input-lg" type="text" name="segundo_apellido" value="{{old('segundo_apellido')}}"  maxlength="60" >
 				{!! $errors->first('segundo_apellido', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 			<label for="email"><b>Email</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="email" name="email" maxlength="200" required>
+				<input  class="form-control input-lg" type="email" name="email" maxlength="200"  value="{{old('email')}}" required>
 				{!! $errors->first('email', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
@@ -63,8 +63,8 @@
 			    </div>			
 			    <div id="contenedor3">
 			    	<p>Parroquia</p>
-					<select name="parroquiaSelect" id="parroquiaSelect" class="card text-left p-2">
-						<option value="0">Seleccione una parroquia</option>
+					<select  id="parroquiaSelect" class="card text-left p-2">
+						<option>Seleccione una parroquia</option>
 					</select>
 			    </div>
 			</div>	
@@ -72,14 +72,14 @@
 
 			<label for="fecha_de_nacimiento"><b>Fecha de nacimiento</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="date" name="fecha_de_nacimiento" required>
+				<input  class="form-control input-lg" type="date" value="{{old('fecha_de_nacimiento')}}" name="fecha_de_nacimiento" required>
 				{!! $errors->first('fecha_de_nacimiento', '<span class=error>:participantes>/span>')!!} 
 				</input>		
 			</div>
 
 			<label for="telefono"><b>Telefono</b>	
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="telefono" maxlength="30" >
+				<input  class="form-control input-lg" type="text" name="telefono"  value="{{old('telefono')}}" nmaxlength="30" >
 
 				</input>
 			</div>
@@ -112,7 +112,7 @@
             fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
             .then(response  =>  response.text() )
             .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
- 									document.getElementById("contenedor3").innerHTML = '<p>Parroquia</p><select id="parroquiaSelect" class="card text-left p-2"><option value="0">Seleccione una parroquia</option></select>'
+ 									document.getElementById("contenedor3").innerHTML = '<p>Parroquia</p><select id="parroquiaSelect" class="card text-left p-2"><option>Seleccione una parroquia</option></select>'
         	})
   		}
   		buscarParroquia = function(){
