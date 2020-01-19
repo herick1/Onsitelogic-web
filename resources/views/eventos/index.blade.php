@@ -22,7 +22,7 @@
     <br>
     <br>
 
-    <div id="contenedor">
+    <div id="contenedor" style="min-height: 400px">
             @include('eventos.tabla')
     </div>
 

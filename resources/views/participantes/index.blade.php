@@ -48,7 +48,7 @@
         <br>
     </div>
 
-    <div id="contenedor">
+    <div id="contenedor" style="min-height: 400px">
             @include('participantes.tabla')
     </div>
 

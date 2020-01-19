@@ -57,7 +57,6 @@
 					@yield('contenido')
 					<br>
 					<br>
-		   			<br>
 					<footer> Copyright ° Herick  {{ date('Y') }}</footer>
 			    </main>
 		  	</div>
