@@ -67,11 +67,11 @@ class EventoController extends Controller
             //buscamos la id del evento
             $eventosID = DB::select(DB::raw("SELECT id
                                               FROM Evento
-                                              WHERE tipo = $p0 and nombre = '$p1'
-                                              and fecha_inicio = '$p2'
-                                              and segundo_nombre = '$p3'
+                                              WHERE tipo = '$p0' and nombre = '$p1'
+                                              and cantidad_de_personas = $p2
+                                              and fecha_inicio = '$p3'
                                               and fecha_fin =  '$p4'
-                                              and parroquiaSelect = '$p5'"
+                                              and fk_Lugar = $p5"
             ));
             foreach ($eventosID as $eventoID) {
                 $id_evento=$eventoID->id;
@@ -88,11 +88,12 @@ class EventoController extends Controller
                         'p1' =>  $participante->id,
                         'p2' =>  $id_evento,
                 ));
-            } 
+            }
+        } 
         $estados = DB::select(DB::raw("SELECT * 
                                         FROM Lugar 
                                         where tipo = 'Estado'"
-        ));}    
+        ));    
         $eventos_lista = DB::table('Evento')->get();
         return view('eventos.index' , compact('eventos_lista', 'estados'));
     }

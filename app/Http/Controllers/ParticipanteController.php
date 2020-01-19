@@ -134,6 +134,15 @@ class ParticipanteController extends Controller
     {
         //es un select de una id 
         $participante = DB::table('Participante')->where('id',$id)->first();
+
+        //presentar formulario para actualizar mensaje
+        $participantes_listas = DB::select(DB::raw("SELECT p.* , l3.nombre as parroquia, l2.nombre as municipio , l1.nombre as estado
+                                        FROM Participante p, lugar l1, lugar l2, lugar l3
+                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id"
+        ));
+        foreach ($participantes_listas as $participanteID) {
+            $participante=$participanteID;
+        }
         return view('participantes.show', compact('participante'));
     }
 
@@ -186,7 +195,7 @@ class ParticipanteController extends Controller
 
         //por si se ejecuta un parroquia igual a 0 
         if($request->input('parroquiaSelect') > 1){
-            DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9, p10)',
+            DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9, :p10)',
                     array(
                         'p0' =>  $id,
                         'p1' =>  $request->input('cedula'),

@@ -5,6 +5,8 @@
         <br>
         <strong>Fecha de inicio del evento:&nbsp;</strong> <i>{{$evento->fecha_inicio}}</i><br>
         <strong>Fecha de fin del evento: &nbsp;</strong> <i>{{$evento->fecha_fin}}</i><br>
+        <strong>Direccion:&nbsp;</strong> <i>{{$evento->estado}},&nbsp;{{$evento->municipio}},&nbsp;{{$evento->parroquia}}</i>
+        <br>
         <br>
         <a  type="button" class="btn btn-info" data-dismiss="modal">
             Volver

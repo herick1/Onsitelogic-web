@@ -71,7 +71,7 @@
 			    </div>			
 			    <div id="contenedor3">
 			    	<p>Parroquia</p>
-					<select id="parroquiaSelect" class="card text-left p-2">
+					<select id="parroquiaSelect" class="card text-left p-2" name="parroquiaSelect">
 		                <option Select value="{{$participantes_lista->parroquiaID}}">{{$participantes_lista->parroquiaNombre}}</option>
 		                <optgroup label="opciones"> 
 		              	<option  value="0">Seleccione una parroquia</option>

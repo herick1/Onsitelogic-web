@@ -42,7 +42,7 @@
 			    </div>			
 			    <div id="contenedor3">
 			    	<p>Parroquia</p>
-					<select id="parroquiaSelect" class="card text-left p-2" min=1>
+					<select id="parroquiaSelect" class="card text-left p-2" name="parroquiaSelect">
 						<option value="0">Seleccione una parroquia</option>
 					</select>
 			    </div>

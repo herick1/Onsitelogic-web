@@ -17,7 +17,7 @@ class CreateEventosTableAndStoresprocedured extends Migration
             DROP PROCEDURE IF EXISTS sp_insert_evento;
             CREATE PROCEDURE sp_insert_evento( IN _tipo varchar(20) , IN _nombre varchar(60), _cantidad_de_personas numeric(5), _fecha_inicio date, _fecha_fin date, IN _lugar int )
             BEGIN
-                INSERT INTO `Evento`(`tipo`,  `nombre`, `cantidad_de_personas`,`fecha_inicio`,`fecha_fin`, `fk_lugar` ) VALUES(_tipo, _nombre, _cantidad_de_personas, _fecha_inicio, _fecha_fin);
+                INSERT INTO `Evento`(`tipo`,  `nombre`, `cantidad_de_personas`,`fecha_inicio`,`fecha_fin`, `fk_lugar` ) VALUES(_tipo, _nombre, _cantidad_de_personas, _fecha_inicio, _fecha_fin, _lugar);
             END;
 
             DROP PROCEDURE IF EXISTS sp_update_evento;

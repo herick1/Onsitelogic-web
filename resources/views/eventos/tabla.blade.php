@@ -25,7 +25,6 @@
                         	<a onclick="selecionadoShow({{$evento->id}})" data-toggle="modal" data-target="#showModal" type="button"  >
                                 {{$evento->tipo}}
                         	</a>
-                        	{{$evento->tipo}}
                         </td>
 						<td>
 							<a onclick="selecionadoShow({{$evento->id}})" data-toggle="modal" data-target="#showModal" type="button"  >
