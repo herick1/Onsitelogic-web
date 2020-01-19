@@ -80,7 +80,7 @@
 			<label for="telefono"><b>Telefono</b>	
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="telefono" maxlength="30" >
-				{!! $errors->first('telefono', '<span class=error>:participantes>/span>')!!} 
+
 				</input>
 			</div>
 
@@ -101,6 +101,7 @@
 		</form>
 		</form>
 	</div>
+
 
 
 <script type="text/javascript">
@@ -124,5 +125,6 @@
 		
 	})
 </script>
+
 
 	

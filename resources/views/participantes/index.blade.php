@@ -71,6 +71,35 @@
     </div>
 
 
+@if($errors->first('cedula') or $errors->first('primer_nombre') or $errors->first('segundo_nombre') or $errors->first('primer_apellido') or $errors->first('segundo_apellido')  or $errors->first('email') or $errors->first('fecha_de_nacimiento')  or $errors->first('telefono') or $errors->first('tipo') or $errors->first('parroquiaSelect') )
+    <!-- modal de updateasistencia sin haber puesto un evento-->
+    <div class="modal fade" id="errores" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ups no se pudo completar la transaccion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="font-weight: normal;">
+                se ecnontraron los siguientes errores durante la transaccion:
+                    <div class="alert alert-warning" role="alert">
+                       @foreach ($errors->all() as $error)
+                          <div>{{ $error }}</div>
+                       @endforeach
+                    </div>
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+              </div>
+            </div>
+        </div>
+    </div>
+
+@endif
+
+
     <script>         
         window.addEventListener('load',function(){
             document.getElementById("texto").addEventListener("keyup", () => {
@@ -99,5 +128,10 @@
         }
     })
     </script>
-
+    <script>
+    $(document).ready(function(){
+      // despues del código
+                     $("#errores").modal("show");
+    });
+    </script>
 @stop;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class ParticipanteController extends Controller
 {
@@ -50,10 +51,10 @@ class ParticipanteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\ParticipanteRequest $request)
     {
         //esta variable solo se utiliza la veces que hay que recargar la pagina por una actualizacion, aupdate de asistencia o cuando se elimina un participante y ya se habia selecionado un evento antes
-        $mensaje= $request->input('Participante');  
+          
 
         if($request->input('parroquiaSelect')>0)
         {

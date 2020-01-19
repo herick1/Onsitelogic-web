@@ -1,6 +1,6 @@
 	<p>Municipio</p>
 	<select id="municipioSelect" class="card text-left p-2"  onchange="buscarParroquia()">
-		<option Select value="0">Seleccione un municipio</option>
+		<option  value="0">Seleccione un municipio</option>
         @foreach($select as $municipio)
             <option  value="{{$municipio->id}}">{{$municipio->nombre}}</option>
         @endforeach
