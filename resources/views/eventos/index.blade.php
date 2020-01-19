@@ -23,7 +23,7 @@
     <br>
 
     <div id="contenedor">
-            @include('evento.tabla')
+            @include('eventos.tabla')
     </div>
 
     <!-- modales  -->
@@ -37,7 +37,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    @include('evento.create')
+                    @include('eventos.create')
                 </div>
             </div>
         </div>
@@ -48,14 +48,14 @@
         window.addEventListener('load',function(){
             document.getElementById("texto").addEventListener("keyup", () => {
                 if((document.getElementById("texto").value.length)>=1)
-                    fetch(`/evento/buscador?texto=${document.getElementById("texto").value}&evento=${document.getElementById("eventoSelect").value}`,{ method:'get' })
+                    fetch(`/evento/buscador?texto=${document.getElementById("texto").value}`,{ method:'get' })
                     .then(response  =>  response.text() )
                     .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
                 //caso especial que estes borrando todo y quieres denuevo todos los registros de cualquier evento
                 //a simple vista parece que es redundante este espacio de codigo pero si se agrega al de arriba 
                 //ocurre un internal error
                 if((document.getElementById("texto").value.length)==0)
-                    fetch(`/evento/buscador?texto=${document.getElementById("texto").value}&evento=${document.getElementById("eventoSelect").value}`,{ method:'get' })
+                    fetch(`/evento/buscador?texto=${document.getElementById("texto").value}`,{ method:'get' })
                     .then(response  =>  response.text() )
                     .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
             })

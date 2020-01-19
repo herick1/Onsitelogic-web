@@ -1543,14 +1543,14 @@ insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, 
 insert into Participante(cedula, pimer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, tipo, fk_Lugar) VALUES (31283728, 'Carlos', 'Jose', 'Fernandez', 'Hidalgo', 'carlosjose@hotmail.com', 'Asesor',1600);
 
 
-insert into Evento(id,tipo,nombre,fecha_inicio, fecha_fin) values(1,'Conferencia', 'Evenpro reunion', '2020-02-01','2020-02-01');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Desfile', 'Desfile de la Feria Internacional de San Sebastián 2020', '2020-01-02','2020-01-02');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Festival', 'Festival de Bandas Show de Asogata', '2020-02-03','2020-02-03');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Concierto', 'Concierto Orquesta Sinfónica Juan José Landaeta', '2020-02-04','2020-02-04');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Conferencia', 'Haciendo comunidad con WordPress', '2020-01-03','2020-01-03');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Conferencia', 'INTRODUCCIÓN AL FOREX Y CRIPTO caracas', '2020-10-05','2020-10-05');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Conferencia', 'Ticket Mundo Conferencia internacional', '2020-11-11','2020-11-11');
-insert into Evento(tipo,nombre,fecha_inicio, fecha_fin) values('Conferencia', 'PWC ¿Como utilizar powerbi en tu empresa?', '2020-02-02','2020-02-02'); 
+insert into Evento(id,tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values(1,'Conferencia', 'Evenpro reunion', '2020-02-01','2020-02-01', 1600);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Desfile', 'Desfile de la Feria Internacional de San Sebastián 2020', '2020-01-02','2020-01-02',1599);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Festival', 'Festival de Bandas Show de Asogata', '2020-02-03','2020-02-03',1600);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Concierto', 'Concierto Orquesta Sinfónica Juan José Landaeta', '2020-02-04','2020-02-04',1600);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Conferencia', 'Haciendo comunidad con WordPress', '2020-01-03','2020-01-03', 1568);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Conferencia', 'INTRODUCCIÓN AL FOREX Y CRIPTO caracas', '2020-10-05','2020-10-05',1599);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Conferencia', 'Ticket Mundo Conferencia internacional', '2020-11-11','2020-11-11',1600);
+insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Conferencia', 'PWC ¿Como utilizar powerbi en tu empresa?', '2020-02-02','2020-02-02', 1599); 
 
 
 

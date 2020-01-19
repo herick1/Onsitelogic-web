@@ -69,14 +69,14 @@
                             Actualizar
                             </button>
 						</a>
-                        <a data-toggle="modal" data-target="#eliminarModal">
+                        <a data-toggle="modal" data-target="#eliminarModal{{$participante->id}}">
                             <button class="btn btn-danger">
-                            Eliminar
+                            Eliminar 
                             </button>
                         </a>
                         
                         <!-- MODALES-->
-                        <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="eliminarModal{{$participante->id}}">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">

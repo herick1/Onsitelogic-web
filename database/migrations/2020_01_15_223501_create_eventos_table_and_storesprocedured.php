@@ -30,6 +30,7 @@ class CreateEventosTableAndStoresprocedured extends Migration
             DROP PROCEDURE IF EXISTS sp_delete_evento;
             CREATE PROCEDURE sp_delete_evento(IN _id INT)
             BEGIN
+                delete from `Historial_usuario_evento` where  `fk_evento`= _id; 
                 delete from `Evento` WHERE `id` = _id;
             END
 SQL;

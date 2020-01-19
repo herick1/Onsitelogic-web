@@ -5,21 +5,21 @@
 
 			<label for="tipo"><b> Tipo</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="tipo" value="{{$eventos_lista->tipo }}">
+				<input  class="form-control input-lg" type="text" name="tipo" value="{{$eventos_lista->tipo }}"  maxlength="20">
 				{!! $errors->first('tipo', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="nombre"><b>Nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="nombre" value="{{$eventos_lista->nombre }}">
+				<input  class="form-control input-lg" type="text" name="nombre" value="{{$eventos_lista->nombre }}"  maxlength="60">
 				{!! $errors->first('nombre', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="cantidad_de_personas"><b>Cantidad de personas</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="number" name="cantidad_de_personas" value="{{$eventos_lista->cantidad_de_personas }}">
+				<input  class="form-control input-lg" type="number" name="cantidad_de_personas" value="{{$eventos_lista->cantidad_de_personas }}" max=99999>
 				{!! $errors->first('cantidad_de_personas', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>

@@ -31,7 +31,6 @@
 							<a onclick="selecionadoShow({{$evento->id}})" data-toggle="modal" data-target="#showModal" type="button"  >
                                 {{$evento->fecha_inicio}}
                         	</a>
-                        	{{$evento->fecha_inicio}}
 						</td>
                         <td>
                         	<a onclick="selecionadoShow({{$evento->id}})" data-toggle="modal" data-target="#showModal" type="button"  >
@@ -45,14 +44,14 @@
                             Actualizar
                             </button>
 						</a>
-                        <a data-toggle="modal" data-target="#eliminarModal">
+                        <a data-toggle="modal" data-target="#eliminarModal{{$evento->id}}">
                             <button class="btn btn-danger">
                             Eliminar
                             </button>
                         </a>
                         
                         <!-- MODALES-->
-                        <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="eliminarModal{{$evento->id}}">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
