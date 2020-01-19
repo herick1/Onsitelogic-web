@@ -53,58 +53,66 @@ class ParticipanteController extends Controller
     public function store(Request $request)
     {
         //esta variable solo se utiliza la veces que hay que recargar la pagina por una actualizacion, aupdate de asistencia o cuando se elimina un participante y ya se habia selecionado un evento antes
-        $mensaje= $request->input('Participante');       
-        DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 )',
-                array(
-                    'p0' =>  $request->input('cedula'),
-                    'p1' =>  $request->input('email'),
-                    'p2' =>  $request->input('primer_nombre'),
-                    'p3' =>  $request->input('segundo_nombre'),
-                    'p4' =>  $request->input('primer_apellido'),
-                    'p5' => $request->input('segundo_apellido'),
-                    'p6' => $request->input('fecha_de_nacimiento'),
-                    'p7' => $request->input('telefono'),
-                    'p8' => $request->input('tipo'),
+        $mensaje= $request->input('Participante');  
+
+        if($request->input('parroquiaSelect')>0)
+        {
+            DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 , :p9 )',
+                    array(
+                        'p0' =>  $request->input('cedula'),
+                        'p1' =>  $request->input('email'),
+                        'p2' =>  $request->input('primer_nombre'),
+                        'p3' =>  $request->input('segundo_nombre'),
+                        'p4' =>  $request->input('primer_apellido'),
+                        'p5' => $request->input('segundo_apellido'),
+                        'p6' => $request->input('fecha_de_nacimiento'),
+                        'p7' => $request->input('telefono'),
+                        'p8' => $request->input('tipo'),
+                        'p9' => $request->input('parroquiaSelect'),
+                    ));
+            //esto lo hago ya que si comparo directamente en el query me da un error
+            $p0= $request->input('cedula');
+            $p1 = $request->input('email');
+            $p2 =  $request->input('primer_nombre');
+            $p3 =  $request->input('segundo_nombre');
+            $p4 =  $request->input('primer_apellido');
+            $p5 = $request->input('segundo_apellido');
+            $p6 = $request->input('fecha_de_nacimiento');
+            $p7 = $request->input('telefono');
+            $p8 = $request->input('tipo');
+            $id_participante=0;
+            //buscamos la id del participante
+            $participantesID = DB::select(DB::raw("SELECT id
+                                              FROM Participante
+                                              WHERE cedula = $p0 and email = '$p1'
+                                              and pimer_nombre = '$p2'
+                                              and segundo_nombre = '$p3'
+                                              and primer_apellido =  '$p4'
+                                              and segundo_apellido = '$p5'
+                                              and fecha_de_nacimiento = '$p6'
+                                              and telefono = '$p7'
+                                              and tipo = '$p8'"
+            ));
+            foreach ($participantesID as $participanteID) {
+                $id_participante=$participanteID->id;
+            }
+            $eventos = DB::select(DB::raw("SELECT id, nombre
+                                           from Evento"
+            )); 
+            //insertamos al participante en toda la tabla de historial_usuario_evento
+            //TODO se puede hacer directo con un trigger (revisar stored procedured en DDL)
+            foreach ($eventos as $eventoValue) {
+                DB::select('CALL sp_insertar_historial(:p0, :p1, :p2)',
+                    array(
+                        'p0' =>  0,
+                        'p1' =>  $id_participante,
+                        'p2' =>  $eventoValue->id,
                 ));
-        //esto lo hago ya que si comparo directamente en el query me da un error
-        $p0= $request->input('cedula');
-        $p1 = $request->input('email');
-        $p2 =  $request->input('primer_nombre');
-        $p3 =  $request->input('segundo_nombre');
-        $p4 =  $request->input('primer_apellido');
-        $p5 = $request->input('segundo_apellido');
-        $p6 = $request->input('fecha_de_nacimiento');
-        $p7 = $request->input('telefono');
-        $p8 = $request->input('tipo');
-        $id_participante=0;
-        //buscamos la id del participante
-        $participantesID = DB::select(DB::raw("SELECT id
-                                          FROM Participante
-                                          WHERE cedula = $p0 and email = '$p1'
-                                          and pimer_nombre = '$p2'
-                                          and segundo_nombre = '$p3'
-                                          and primer_apellido =  '$p4'
-                                          and segundo_apellido = '$p5'
-                                          and fecha_de_nacimiento = '$p6'
-                                          and telefono = '$p7'
-                                          and tipo = '$p8'"
-        ));
-        foreach ($participantesID as $participanteID) {
-            $id_participante=$participanteID->id;
+            }
         }
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         )); 
-        //insertamos al participante en toda la tabla de historial_usuario_evento
-        //TODO se puede hacer directo con un trigger (revisar stored procedured en DDL)
-        foreach ($eventos as $eventoValue) {
-            DB::select('CALL sp_insertar_historial(:p0, :p1, :p2)',
-                array(
-                    'p0' =>  0,
-                    'p1' =>  $id_participante,
-                    'p2' =>  $eventoValue->id,
-            ));
-        }
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
         ));
@@ -176,19 +184,23 @@ class ParticipanteController extends Controller
     {
         $mensaje= $request->input('Participante');
 
-        DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9 )',
-                array(
-                    'p0' =>  $id,
-                    'p1' =>  $request->input('cedula'),
-                    'p2' =>  $request->input('email'),
-                    'p3' =>  $request->input('primer_nombre'),
-                    'p4' =>  $request->input('segundo_nombre'),
-                    'p5' =>  $request->input('primer_apellido'),
-                    'p6' =>  $request->input('segundo_apellido'),
-                    'p7' =>  $request->input('fecha_de_nacimiento'),
-                    'p8' => $request->input('telefono'),
-                    'p9' => $request->input('tipo'),
-                ));
+        //por si se ejecuta un parroquia igual a 0 
+        if($request->input('parroquiaSelect') > 1){
+            DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9, p10)',
+                    array(
+                        'p0' =>  $id,
+                        'p1' =>  $request->input('cedula'),
+                        'p2' =>  $request->input('email'),
+                        'p3' =>  $request->input('primer_nombre'),
+                        'p4' =>  $request->input('segundo_nombre'),
+                        'p5' =>  $request->input('primer_apellido'),
+                        'p6' =>  $request->input('segundo_apellido'),
+                        'p7' =>  $request->input('fecha_de_nacimiento'),
+                        'p8' => $request->input('telefono'),
+                        'p9' => $request->input('tipo'),
+                        'p10' => $request->input('parroquiaSelect'),
+                    ));            
+        }
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial
                                                    FROM Participante p"
