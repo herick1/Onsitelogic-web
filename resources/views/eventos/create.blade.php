@@ -1,11 +1,4 @@
-@extends('layout.layout')
-
-@section('contenido')
-
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Crear un nuevo Evento</h1>
-    </div>
-    <div class=" col-sm-8 col-12 card text-left p-5" style="margin-left: 15%">
+    <div class="text-left">
 		<form method="POST" action="{{ route('eventos.store') }}">
 			{!!csrf_field()!!}
 
@@ -29,6 +22,32 @@
 				{!! $errors->first('cantidad_de_personas', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
+
+			<label for="lugar"><b>Dirección</b></label>
+			<div class="row p-3">
+			    <div id="contenedor1">
+					<p>estado</p>
+					<select id="estadoSelect" class="card text-left p-2" onchange="estado()">
+		                <option Select value="0">Seleccione un estado</option>
+		                @foreach($estados as $estado)
+		                    <option  value="{{$estado->id}}">{{$estado->nombre}}</option>
+		                @endforeach
+					</select>
+				</div>
+			    <div id="contenedor2">
+			    	<p>Municipio</p>
+					<select id="municipioSelect" class="card text-left p-2">
+						<option value="0">Seleccione un municipio</option>
+					</select>
+			    </div>			
+			    <div id="contenedor3">
+			    	<p>Parroquia</p>
+					<select id="parroquiaSelect" class="card text-left p-2" min=1>
+						<option value="0">Seleccione una parroquia</option>
+					</select>
+			    </div>
+			</div>	
+
 			<label for="fecha_inicio"><b>fecha de inicio del evento</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="date" name="fecha_inicio" >
@@ -43,11 +62,36 @@
 				</input>		
 			</div>
 
+			<br>
+			<br>			
 			<input  class="btn btn-info" type="submit" value="enviar">
-			<a href="{{route('eventos.index')}}" class="btn btn-outline-info" role="button">
-    			Volver
-			</a>
+	        <a  type="button" class="btn btn-info" data-dismiss="modal">
+	            Volver
+	        </a>
 		</form>
 		</form>
 	</div>
-@stop;
+
+
+
+<script type="text/javascript">
+	$(function() {
+
+  		estado = function(){
+
+            fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
+ 									document.getElementById("contenedor3").innerHTML = '<p>Parroquia</p><select id="parroquiaSelect" class="card text-left p-2"><option value="0">Seleccione una parroquia</option></select>'
+        	})
+  		}
+  		buscarParroquia = function(){
+
+            fetch(`/lugar/buscadorParroquia?municipio=${document.getElementById("municipioSelect").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("contenedor3").innerHTML = html
+        	})
+  		}
+		
+	})
+</script>

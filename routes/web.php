@@ -23,11 +23,16 @@ Route::get('busquedaEvento/{idEvento?}', ['as' => 'busquedaEvento', 'uses'=> 'Pa
 
 Route::post('UpdateAsistencia/{id?}/{asistencia?}', ['as' => 'UpdateAsistencia', 'uses'=> 'ParticipanteController@UpdateAsistencia'])->where('id' , "[0-9]+")->where('asistencia' , "[0-1]+");
 
-
+//revisar si este todovaia se utiliza sino borrarlo
 Route::get('buscador', ['as' => 'buscador', 'uses'=> 'ParticipanteController@buscador']);
 
 // RUTA PARA EL BUSCADOR EN TIEMPO REAL
 Route::get('/nombre/buscador','ParticipanteController@buscador');
+
+
+// RUTA PARA EL BUSCADOR EN TIEMPO REAL
+Route::get('/evento/buscador','EventoController@buscador');
+
 
 // RUTA PARA EL BUSCADOR EN TIEMPO REAL
 Route::get('/lugar/buscadorMunicipio','LugarController@buscadorMunicipio');
