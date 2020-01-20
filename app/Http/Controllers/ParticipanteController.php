@@ -29,7 +29,8 @@ class ParticipanteController extends Controller
         ));
         //esta variable solo se utiliza la veces que hay que recargar la pagina por una actualizacion, aupdate de asistencia o cuando se elimina un participante y ya se habia selecionado un evento antes
         $eventoAntesSeleccionado= null;
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
+        $mensajeDeexito=null;
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado','mensajeDeexito'));
     }
 
     /**
@@ -124,7 +125,8 @@ class ParticipanteController extends Controller
                                         where tipo = 'Estado'"
         ));
         $eventoAntesSeleccionado= null;
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
+        $mensajeDeexito="creado";
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado', 'mensajeDeexito'));
     }
 
     /**
@@ -228,7 +230,8 @@ class ParticipanteController extends Controller
                                         where tipo = 'Estado'"
         ));
         $eventoAntesSeleccionado= null;
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
+        $mensajeDeexito="actualizado";
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado', 'mensajeDeexito'));
     }
 
     /**
@@ -256,7 +259,8 @@ class ParticipanteController extends Controller
                                         where tipo = 'Estado'"
         ));        
         $eventoAntesSeleccionado= null;
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
+        $mensajeDeexito="eliminado";
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado', 'mensajeDeexito'));
     }
 
     /**
@@ -319,7 +323,8 @@ class ParticipanteController extends Controller
         foreach ($eventoAntesSeleccionados as $evento) {
             $eventoAntesSeleccionado=$evento;
         }
-        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado'));
+        $mensajeDeexito="actualizado la asistencia";
+        return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado','mensajeDeexito'));
     }
 
     /**

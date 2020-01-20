@@ -43,6 +43,28 @@
         </div>
     </div>
 
+@if($mensajeDeexito)
+    <div class="modal fade" id="errores" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Se a {{$mensajeDeexito}} satifactoriamente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="font-weight: normal;">
+                La transacción realizada a {{$mensajeDeexito}} correctamente al participante
+                <br>
+                <img  src="{{asset('check_animado_correcto.gif')}}" style="max-height: 200px">
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">ok</button>
+              </div>
+            </div>
+        </div>
+    </div>
+@endif
 
     <script>         
         window.addEventListener('load',function(){
@@ -60,6 +82,12 @@
                     .then(html      =>  {   document.getElementById("contenedor").innerHTML = html  })
             })
         });
+    </script>
+    <script>
+    $(document).ready(function(){
+      // despues del código
+                     $("#errores").modal("show");
+    });
     </script>
 
 @stop;

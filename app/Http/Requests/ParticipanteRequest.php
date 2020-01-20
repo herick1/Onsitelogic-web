@@ -29,7 +29,7 @@ class ParticipanteRequest extends FormRequest
             'primer_nombre' => 'required|max:30',
             'segundo_nombre' => 'max:30',
             'primer_apellido' => 'required|max:60',
-            'segundo_apellido' => 'required|max:60',
+            'segundo_apellido' => 'max:60',
             'fecha_de_nacimiento' => 'date',
             'telefono' => 'required|max:30',
             'tipo' => 'max:20|in:Visitante,Exponente,Asesor,Otros',

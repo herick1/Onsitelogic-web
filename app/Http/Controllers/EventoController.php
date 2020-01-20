@@ -20,7 +20,8 @@ class EventoController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('eventos.index' , compact('eventos_lista', 'estados'));
+        $mensajeDeexito=null;
+        return view('eventos.index' , compact('eventos_lista', 'estados', 'mensajeDeexito'));
     }
 
     /**
@@ -95,7 +96,8 @@ class EventoController extends Controller
                                         where tipo = 'Estado'"
         ));    
         $eventos_lista = DB::table('Evento')->get();
-        return view('eventos.index' , compact('eventos_lista', 'estados'));
+        $mensajeDeexito="creado";
+        return view('eventos.index' , compact('eventos_lista', 'estados', 'mensajeDeexito'));
     }
 
     /**
@@ -173,7 +175,8 @@ class EventoController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('eventos.index' , compact('eventos_lista', 'estados'));
+        $mensajeDeexito="actualizado";
+        return view('eventos.index' , compact('eventos_lista', 'estados', 'mensajeDeexito'));
     }
 
     /**
@@ -193,7 +196,8 @@ class EventoController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        return view('eventos.index' , compact('eventos_lista', 'estados'));
+        $mensajeDeexito="eliminado";
+        return view('eventos.index' , compact('eventos_lista', 'estados','mensajeDeexito'));
     }
 
      /**
