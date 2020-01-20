@@ -1553,7 +1553,6 @@ insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Confer
 insert into Evento(tipo,nombre,fecha_inicio, fecha_fin, fk_lugar) values('Conferencia', 'PWC ¿Como utilizar powerbi en tu empresa?', '2020-02-02','2020-02-02', 1599); 
 
 
-
 insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',1,1 );
 insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (1,'2020-02-02','2020-02-02',2,1 );
 insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',3,1 );
@@ -1561,7 +1560,31 @@ insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_par
 insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',5,1 );
 insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (1,'2020-02-02','2020-02-02',6,1 );
 insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',7,1 );
-    
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',8,1 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',9,1 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',10,1 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',11,1 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',1,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',2,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',3,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',4,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',5,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',5,2);
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',6,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',7,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',8,2 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',9,2);
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',10,2);
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',1,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',2,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',3,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',4,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',5,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',6,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',7,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',8,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',9,3 );
+insert into Historial_Usuario_Evento (asistencia,fecha_inicio, fecha_fin ,fk_participante, fk_evento) VALUES (0,'2020-02-02','2020-02-02',10,3 );
 SQL;
         DB::connection()->getPdo()->exec($sql);
     }
