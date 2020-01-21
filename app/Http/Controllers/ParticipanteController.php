@@ -112,6 +112,7 @@ class ParticipanteController extends Controller
                         'p2' =>  $eventoValue->id,
                 ));
             }
+            $mensajeDeexito="creado";
         }
         else{
             $mensajeDeexito=null;
@@ -128,7 +129,6 @@ class ParticipanteController extends Controller
                                         where tipo = 'Estado'"
         ));
         $eventoAntesSeleccionado= null;
-        $mensajeDeexito="creado";
         return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado', 'mensajeDeexito'));
     }
 
@@ -219,6 +219,8 @@ class ParticipanteController extends Controller
                         'p9' => $request->input('tipo'),
                         'p10' => $request->input('parroquiaSelect'),
                     ));            
+
+            $mensajeDeexito="actualizado";
         }
         else{
             $mensajeDeexito=null;
@@ -236,7 +238,6 @@ class ParticipanteController extends Controller
                                         where tipo = 'Estado'"
         ));
         $eventoAntesSeleccionado= null;
-        $mensajeDeexito="actualizado";
         return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado', 'mensajeDeexito'));
     }
 

@@ -90,6 +90,7 @@ class EventoController extends Controller
                         'p2' =>  $id_evento,
                 ));
             }
+            $mensajeDeexito="creado";
         }
         else{
             $mensajeDeexito=null;
@@ -99,7 +100,6 @@ class EventoController extends Controller
                                         where tipo = 'Estado'"
         ));    
         $eventos_lista = DB::table('Evento')->get();
-        $mensajeDeexito="creado";
         return view('eventos.index' , compact('eventos_lista', 'estados', 'mensajeDeexito'));
     }
 
@@ -113,6 +113,14 @@ class EventoController extends Controller
     {
         //es un select de una id 
         $evento = DB::table('Evento')->where('id',$id)->first();
+
+        $eventos_listas = DB::select(DB::raw("SELECT p.* , l3.nombre as parroquia, l2.nombre as municipio , l1.nombre as estado
+                                        FROM Evento p, lugar l1, lugar l2, lugar l3
+                                        where p.id=$id and p.fk_Lugar= l3.id and l3.fk_Lugar = l2.id and l2.fk_Lugar= l1.id"
+        ));
+        foreach ($eventos_listas as $eventoID) {
+            $evento=$eventoID;
+        }
         return view('eventos.show', compact('evento'));
     }
 
@@ -172,6 +180,8 @@ class EventoController extends Controller
                         'p5' =>  $request->input('fecha_fin'),
                         'p6' => $request->input('parroquiaSelect') ,
                     ));
+
+            $mensajeDeexito="actualizado";
         }
         else{
             $mensajeDeexito=null;
@@ -181,7 +191,6 @@ class EventoController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        $mensajeDeexito="actualizado";
         return view('eventos.index' , compact('eventos_lista', 'estados', 'mensajeDeexito'));
     }
 
