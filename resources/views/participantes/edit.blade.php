@@ -5,41 +5,35 @@
 			<label for="cedula"><b>cedula</b></label>
 			<div class="form-group">
 				<input  class="form-control" type="number" max=999999999 name="cedula"  class="form-control input-lg" value="{{$participantes_lista->cedula}}"  required >
-				{!! $errors->first('cedula', '<span class=error>:participantes>/span>')!!} 
 			    </input>
 		    </div>
 
 			<label for="primer_nombre"><b>Primer nombre</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" maxlength="30" name="primer_nombre" value="{{$participantes_lista->pimer_nombre}}" required>
-				{!! $errors->first('primer_nombre', '<span class=error>:participantes>/span>')!!} 
+				<input  class="form-control input-lg" type="text" maxlength="30" name="primer_nombre" value="{{$participantes_lista->pimer_nombre}}" required> 
 				</input>
 			</div>
 
 			<label for="segundo_apellido"><b>Segundo nombre</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="segundo_nombre" value="{{$participantes_lista->segundo_nombre}}" maxlength="60" >
-				{!! $errors->first('segundo_nombre', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="primer_apellido"><b>Primer apellido</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="primer_apellido" value="{{$participantes_lista->primer_apellido}}" maxlength="30" required>
-				{!! $errors->first('primer_apellido', '<span class=error>:participantes>/span>')!!} 
+				<input  class="form-control input-lg" type="text" name="primer_apellido" value="{{$participantes_lista->primer_apellido}}" maxlength="30" required> 
 				</input>
 			</div>
 
 			<label for="segundo_apellido"><b>Segundo apellido</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="segundo_apellido"  maxlength="60" value="{{$participantes_lista->segundo_apellido}}">
-				{!! $errors->first('segundo_apellido', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 			<label for="email"><b>Email</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="email" name="email" value="{{$participantes_lista->email}}" maxlength="200" required>
-				{!! $errors->first('email', '<span class=error>:participantes>/span>')!!} 
+				<input  class="form-control input-lg" type="email" name="email" value="{{$participantes_lista->email}}" maxlength="200" required> 
 				</input>
 			</div>
 
@@ -86,14 +80,12 @@
 			<label for="fecha_de_nacimiento"><b>Fecha de nacimiento</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="date" name="fecha_de_nacimiento" value="{{$participantes_lista->fecha_de_nacimiento}}" required>
-				{!! $errors->first('fecha_de_nacimiento', '<span class=error>:participantes>/span>')!!} 
 				</input>		
 			</div>
 
 			<label for="telefono"><b>Telefono</b>	
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="telefono" value="{{$participantes_lista->telefono}}" maxlength="30">
-				{!! $errors->first('telefono', '<span class=error>:participantes>/span>')!!} 
 				</input>
 			</div>
 

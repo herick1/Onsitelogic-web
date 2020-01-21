@@ -5,21 +5,18 @@
 			<label for="tipo"><b> Tipo</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="tipo"   maxlength="20" required>
-				{!! $errors->first('tipo', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="nombre"><b>Nombre</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="nombre" required maxlength="60">
-				{!! $errors->first('nombre', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="cantidad_de_personas"><b>Cantidad de personas</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="number" name="cantidad_de_personas" max=99999>
-				{!! $errors->first('cantidad_de_personas', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
@@ -51,14 +48,12 @@
 			<label for="fecha_inicio"><b>fecha de inicio del evento</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="date" name="fecha_inicio" >
-				{!! $errors->first('fecha_inicio', '<span class=error>:eventos>/span>')!!} 
 				</input>
 			</div>
 
 			<label for="fecha_fin"><b>Fecha de fin del evento</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="date" name="fecha_fin">
-				{!! $errors->first('fecha_fin', '<span class=error>:eventos>/span>')!!} 
 				</input>		
 			</div>
 
