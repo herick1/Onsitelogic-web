@@ -113,6 +113,9 @@ class ParticipanteController extends Controller
                 ));
             }
         }
+        else{
+            $mensajeDeexito=null;
+        }
         $eventos = DB::select(DB::raw("SELECT id, nombre
                                        from Evento"
         )); 
@@ -196,12 +199,12 @@ class ParticipanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\ParticipanteRequest $request, $id)
     {
         $mensaje= $request->input('Participante');
 
         //por si se ejecuta un parroquia igual a 0 
-        if($request->input('parroquiaSelect') > 1){
+        if($request->input('parroquiaSelect') > 0){
             DB::select('CALL sp_update_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9, :p10)',
                     array(
                         'p0' =>  $id,
@@ -216,6 +219,9 @@ class ParticipanteController extends Controller
                         'p9' => $request->input('tipo'),
                         'p10' => $request->input('parroquiaSelect'),
                     ));            
+        }
+        else{
+            $mensajeDeexito=null;
         }
         //llenado de la busqueda del evento para que quede igual de como estaba antes de hacer el eliminar
         $participantes_lista = DB::select(DB::raw("SELECT p.* , 0 as asistencia, 0 as idHistorial

@@ -90,6 +90,9 @@ class EventoController extends Controller
                         'p2' =>  $id_evento,
                 ));
             }
+        }
+        else{
+            $mensajeDeexito=null;
         } 
         $estados = DB::select(DB::raw("SELECT * 
                                         FROM Lugar 
@@ -169,6 +172,9 @@ class EventoController extends Controller
                         'p5' =>  $request->input('fecha_fin'),
                         'p6' => $request->input('parroquiaSelect') ,
                     ));
+        }
+        else{
+            $mensajeDeexito=null;
         }
         $eventos_lista = DB::table('Evento')->get();
         $estados = DB::select(DB::raw("SELECT * 
