@@ -66,6 +66,35 @@
     </div>
 @endif
 
+
+@if($errors->first('tipo') or $errors->first('nombre') or $errors->first('cantidad_de_personas') or $errors->first('fecha_inicio') or $errors->first('fecha_fin')  or $errors->first('parroquiaSelect') )
+    <!-- modal de updateasistencia sin haber puesto un evento-->
+    <div class="modal fade" id="errores" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ups the transaction could not be completed</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="font-weight: normal;">
+                The following errors were found during the transaction
+                    <div class="alert alert-warning" role="alert">
+                       @foreach ($errors->all() as $error)
+                          <div>{{ $error }}</div>
+                       @endforeach
+                    </div>
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+              </div>
+            </div>
+        </div>
+    </div>
+@endif
+
+
     <script>         
         window.addEventListener('load',function(){
             document.getElementById("texto").addEventListener("keyup", () => {

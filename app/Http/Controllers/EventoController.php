@@ -44,7 +44,7 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\EventoRequest  $request)
     {
 
         //Model::unguard();
@@ -167,8 +167,13 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\EventoRequest $request, $id)
     {
+        
+        //ya que hice las reglas basicas del request hago mis reglas personalizadas
+        $this->validate($request, ['fecha_fin' => ['date', new \App\Rules\validarFechas($request->input('fecha_inicio'))]]);
+
+
         if( $request->input('parroquiaSelect') > 0) {
             DB::select('CALL sp_update_evento(:p0, :p1, :p2, :p3, :p4, :p5, :p6)',
                     array(
