@@ -3,6 +3,15 @@
 ![imagen ER](https://github.com/herick1/Onsitelogic-web/blob/master/database/ER%20shocklogic.png)
 
 
+## ¿ Como ejecutar este proyecto ?
+
+1. Instalar Laragon
+2. Copiar este proyeto dentro de la ruta /www/
+3. Ejecutar en una terminal 
+* php artisan migrate
+
+4. Abrir en un navegador 
+* http://onsitelogic-web.test/  
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
