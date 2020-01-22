@@ -1,7 +1,3 @@
-    <div class="text-left">
-		<form method="POST" action="{{ route('eventos.store') }}">
-			{!!csrf_field()!!}
-
 			<label for="tipo"><b> Type</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="tipo"   maxlength="20" required>
@@ -55,17 +51,13 @@
 			<div class="form-group">
 				<input  class="form-control input-lg" type="date" name="fecha_fin">
 				</input>		
-			</div>
-
-			<br>
-			<br>			
-			<input  class="btn btn-info" type="submit" value="Send">
-	        <button class="btn btn-info" data-dismiss="modal">
-	            Return
-	        </button>
-		</form>
-		</form>
+			</div>	
 	</div>
+	<div class=" float-right">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreatenYesNoModal">Proceed</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
+
 
 
 

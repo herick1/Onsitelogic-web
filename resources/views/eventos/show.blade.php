@@ -8,7 +8,7 @@
         <strong>Address:&nbsp;</strong> <i>{{$evento->estado}},&nbsp;{{$evento->municipio}},&nbsp;{{$evento->parroquia}}</i>
         <br>
         <br>
-        <button class="btn btn-info" data-dismiss="modal">
-            Return
+        <button class="btn btn-info float-right" data-dismiss="modal">
+            Back
         </button>
     </div>

@@ -48,6 +48,44 @@
                             Delete
                             </button>
                         </a>
+                                                    <!-- MODALES-->
+                        <div id="actualizarModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog modal-lg">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4>Update event</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                                <div class="text-left">
+                                    <form method="POST" action="{{ route('eventos.update', $evento->id) }}">
+                                        {!!method_field('PUT')!!}
+                                        {!!csrf_field()!!} 
+                              <div class="modal-body" id="contenedorDeModalActualizar">
+                              </div>
+                              <div class="modal-footer">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                            <div class="modal fade stick-up UpdateYesNoModal" tabindex="-1" role="dialog" aria-labelledby="UpdateYesNoModal" id="UpdateYesNoModal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 id="messageBox2" class="modal-title">Confirm updare event</h4>
+                                        </div>
+                                        <div class="modal-body" style="font-weight: normal;">
+                                            Are you sure to update this event?
+                                        </div>
+                                        <div class="modal-footer" style="text-align: center !important">
+                                            <input  data-toggle="modal" class="btn btn-info" type="submit" value="Proceed" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </form>
                         
                         <!-- MODALES-->
                         <div class="modal fade" id="eliminarModal{{$evento->id}}">
@@ -80,24 +118,6 @@
                 </tbody>
             </table>
         </div>
-
-
-
-    <!-- modal de actualizar-->
-    <div class="modal fade" id="actualizarModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Update event</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>×</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="contenedorDeModalActualizar">
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- modal de show-->
     <div class="modal fade" id="showModal">

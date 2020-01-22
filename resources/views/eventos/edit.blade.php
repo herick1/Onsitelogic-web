@@ -1,17 +1,12 @@
-    <div class="text-left">
-		<form method="POST" action="{{ route('eventos.update', $eventos_lista->id) }}">
-			{!!method_field('PUT')!!}
-			{!!csrf_field()!!}
-
 			<label for="tipo"><b>Type</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="tipo" value="{{$eventos_lista->tipo }}"  maxlength="20">
+				<input  class="form-control input-lg" type="text" name="tipo" value="{{$eventos_lista->tipo }}"  maxlength="20" required>
 				</input>
 			</div>
 
 			<label for="nombre"><b>Name</b></label>
 			<div class="form-group">
-				<input  class="form-control input-lg" type="text" name="nombre" value="{{$eventos_lista->nombre }}"  maxlength="60">
+				<input  class="form-control input-lg" type="text" name="nombre" value="{{$eventos_lista->nombre }}"  maxlength="60" required>
 				</input>
 			</div>
 
@@ -72,18 +67,11 @@
 			<div class="form-group">
 				<input  class="form-control input-lg" type="date" name="fecha_fin" value="{{$eventos_lista->fecha_fin }}">
 				</input>		
-			</div>
-
-			<br>
-			<br>	
-			<div class="form-group row col-12">
-				<input  class="btn btn-info mr-2" type="submit" value="Send">
-			    <button class="btn btn-info" data-dismiss="modal">
-		            Return
-		        </button>
-			</div>
-		</form>
-		</form>
+			</div>	
+	</div>
+	<div class="float-right">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateYesNoModal">Proceed</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	</div>
 
 <script type="text/javascript">
