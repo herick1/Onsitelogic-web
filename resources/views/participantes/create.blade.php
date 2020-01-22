@@ -1,6 +1,4 @@
-    <div class="text-left">
-		<form method="POST" action="{{ route('participantes.store') }}">
-			{!!csrf_field()!!}
+ 
 			<label for="cedula"><b>Identification card</b></label>
 			<div class="form-group">
 				<input   type="number" name="cedula"  class="form-control input-lg" value="{{old('cedula')}}" max=999999999 required>
@@ -70,7 +68,7 @@
 				</input>		
 			</div>
 
-			<label for="telefono"><b>Phone</b>	
+			<label for="telefono"><b>Phone</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="telefono"  value="{{old('telefono')}}" nmaxlength="30" >
 
@@ -84,17 +82,11 @@
 			       <option  value="Advisor">Advisor</option> 
 			       <option value="Others">Others</option> 
 			</select>
-
-			<br>
-			<br>			
-			<input  class="btn btn-info" type="submit" value="Send">
-	        <button class="btn btn-info" data-dismiss="modal">
-	            Return
-	        </button>
-		</form>
-		</form>
 	</div>
-
+	<div class=" float-right">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreatenYesNoModal">Proceed</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
 
 
 <script type="text/javascript">
@@ -115,7 +107,6 @@
             .then(html      =>  {   document.getElementById("contenedor3").innerHTML = html
         	})
   		}
-		
 	})
 </script>
 

@@ -52,23 +52,45 @@
             @include('participantes.tabla')
     </div>
 
+<!-- Modal -->
+<div id="create" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Create a new participant</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+           <div class="text-left">
+            <form method="POST" action="{{ route('participantes.store') }}">
+            {!!csrf_field()!!}
+            @include('participantes.create')
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- modales  -->
-    <div class="modal fade" id="create">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade stick-up CreatenYesNoModal" tabindex="-1" role="dialog" aria-labelledby="CreatenYesNoModal" id="CreatenYesNoModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Create a new participant</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>×</span>
-                    </button>
+                    <h4 id="messageBox2" class="modal-title">Confirm create participant</h4>
                 </div>
-                <div class="modal-body">
-                    @include('participantes.create')
+                <div class="modal-body" style="font-weight: normal;">
+                    Are you sure to create this participant?
+                </div>
+                <div class="modal-footer" style="text-align: center !important">
+                    <input  data-toggle="modal" class="btn btn-info" type="submit" value="Proceed" >
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
                 </div>
             </div>
         </div>
     </div>
+    </form>
+</form>
 
 
 @if($errors->first('cedula') or $errors->first('primer_nombre') or $errors->first('segundo_nombre') or $errors->first('primer_apellido') or $errors->first('segundo_apellido')  or $errors->first('email') or $errors->first('fecha_de_nacimiento')  or $errors->first('telefono') or $errors->first('tipo') or $errors->first('parroquiaSelect') )
@@ -91,7 +113,7 @@
                     </div>
               </div>
               <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
         </div>
@@ -148,12 +170,24 @@
                                             document.getElementById("texto").value = ""
                      })
         }
+
+        //necesario para podr mover el primer modal despues de tener un segundo modal
+        $('.modal').on('hidden.bs.modal', function () {
+        //If there are any visible
+          if($(".modal:visible").length > 0) {
+              //Slap the class on it (wait a moment for things to settle)
+              setTimeout(function() {
+                  $('body').addClass('modal-open');
+
+              },100)
+          }
+        });
     })
     </script>
     <script>
     $(document).ready(function(){
       // despues del código
-                     $("#errores").modal("show");
+        $("#errores").modal("show");
     });
     </script>
 @stop;

@@ -1,7 +1,4 @@
-    <div class="text-left">
-		<form method="POST" action="{{ route('participantes.update', $participantes_lista->id) }}">
-			{!!method_field('PUT')!!}
-			{!!csrf_field()!!}       
+     
 			<label for="cedula"><b>Identification card</b></label>
 			<div class="form-group">
 				<input  class="form-control" type="number" max=999999999 name="cedula"  class="form-control input-lg" value="{{$participantes_lista->cedula}}"  required >
@@ -83,7 +80,7 @@
 				</input>		
 			</div>
 
-			<label for="telefono"><b>Phone</b>	
+			<label for="telefono"><b>Phone</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="telefono" value="{{$participantes_lista->telefono}}" maxlength="30">
 				</input>
@@ -99,17 +96,10 @@
 				       <option value="Others">Others</option> 
 			   	   </optgroup> 
 			</select>
-
-			<br>
-			<br>	
-			<div class="form-group row col-12">
-				<input  class="btn btn-info mr-2" type="submit" value="Send">
-		        <button class="btn btn-info" data-dismiss="modal">
-		            Return
-		        </button>
-			</div>
-		</form>
-		</form>
+	</div>
+	<div class="float-right">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateYesNoModal">Proceed</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	</div>
 
 

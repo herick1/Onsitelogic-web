@@ -10,9 +10,8 @@
         <strong>Type: &nbsp;</strong> <i>{{$participante->tipo}}</i><br>
         <strong>Address:&nbsp;</strong> <i>{{$participante->estado}},&nbsp;{{$participante->municipio}},&nbsp;{{$participante->parroquia}}</i>
         <br>
-	    <br>
-        <button class="btn btn-info" data-dismiss="modal">
-            Return
+        <button class="btn btn-info float-right" data-dismiss="modal">
+            Back
         </button>
     </div>
     @endif

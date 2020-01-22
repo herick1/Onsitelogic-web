@@ -1,8 +1,3 @@
-## Diagrama E/R de la aplicacion
-
-![imagen ER](https://github.com/herick1/Onsitelogic-web/blob/master/database/ER%20shocklogic.png)
-
-
 ## ¿ Como ejecutar este proyecto ?
 
 1. Instalar Laragon
@@ -12,6 +7,12 @@
 
 4. Abrir en un navegador 
 * http://onsitelogic-web.test/  
+
+## Diagrama E/R de la aplicacion
+
+![imagen ER](https://github.com/herick1/Onsitelogic-web/blob/master/database/ER%20shocklogic.png)
+
+
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
