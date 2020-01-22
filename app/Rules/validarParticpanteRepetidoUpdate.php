@@ -34,7 +34,7 @@ class validarParticpanteRepetidoUpdate implements Rule
     {
         //buscamos al participante con la id que teniamos a ver si es el caso de que sea igual pero que estebien que sea igual 
         //porque como provienes de un actulaizar puede ser la misma informacion que tenias para actualizar al aprticipantes
-        $participante = DB::table('Participante')->where(['id', '=', $this->id],
+        $participante = DB::table('Participante')->where([['id', '=', $this->id],
                                                        ['cedula', '=', $value],
                                                        ['pimer_nombre', '=', $this->primer_nombre],
                                                        ['segundo_nombre', '=', $this->segundo_nombre],
