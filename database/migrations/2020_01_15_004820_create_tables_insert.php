@@ -37,7 +37,7 @@ class CreateTablesInsert extends Migration
                    fk_lugar integer,
                    constraint pk_idUsuario primary key(id),
                    constraint fk_parlugar foreign key(fk_lugar) references Lugar(id),
-                   constraint CK_tipo check(tipo in('Visitante','Exponente','Asesor', 'Otros'))
+                   constraint CK_tipo check(tipo in('Visitor','Exponent','Advisor', 'Others'))
                 );
 
                 create table Evento(

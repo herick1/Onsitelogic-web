@@ -4,11 +4,11 @@
                 <thead>
                     <tr>    
                         <th>ID</th>                        
-                        <th>Nombre</th>
-                        <th>tipo</th>
-                        <th>fecha de inicio</th>
-                        <th>fecha de fin </th>
-                        <th>Acciones</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Event start date</th>
+                        <th>Event end date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,12 +40,12 @@
 						<!-- BOTONES -->
                         <a data-toggle="modal" data-target="#actualizarModal" >
 							<button class="btn btn-primary" onclick="selecionadoActualizar({{$evento->id}})">
-                            Actualizar
+                            Update
                             </button>
 						</a>
                         <a data-toggle="modal" data-target="#eliminarModal{{$evento->id}}">
                             <button class="btn btn-danger">
-                            Eliminar
+                            Delete
                             </button>
                         </a>
                         
@@ -54,22 +54,22 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar evento</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete event</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    ¿Esta usted seguro que quiere eliminar este evento?
+                                    Are you sure to delete this event?
                                   </div>
                                   <div class="modal-footer">
 
                                     <form style="display:inline" method="POST" action="{{route('eventos.destroy',$evento->id)}}">
                                             {!!method_field('DELETE')!!}
                                             {!!csrf_field()!!}
-                                            <button class="btn btn-danger" type="submit">Eliminar</button>                 
+                                            <button class="btn btn-danger" type="submit">Delete</button>                 
                                     </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Actualizar información del evento</h4>
+                    <h4>Update event</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>×</span>
                     </button>
@@ -104,7 +104,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Información del evento</h4>
+                    <h4>Show event</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>×</span>
                     </button>

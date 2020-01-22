@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="generator" content="Jekyll v3.8.6">
-		<title>Proyecto OnsiteLogic</title>
+		<title>OnsiteLogic proyect</title>
 		<link rel="icon" href="https://i0.wp.com/raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/django-logo.png?resize=450%2C450&ssl=1&crop=1">
 
 		<!-- Bootstrap core CSS -->
@@ -25,10 +25,10 @@
 	<body style="padding-top:2.5rem! important">
 
 		<nav class="navbar navbar-dark fixed-top bg-info shadow ">
-		  <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center" href="/">Proyecto OnsiteLogic</a>
+		  <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center" href="/">OnsiteLogic proyect</a>
 		  <ul class="navbar-nav px-3">
 		    <li class="nav-item text-nowrap">
-		      <a class="nav-link text-white" href= "{{ route('home') }}">Inicio</a>
+		      <a class="nav-link text-white" href= "{{ route('home') }}">Home</a>
 		    </li>
 		  </ul>
 		</nav>
@@ -40,13 +40,13 @@
 				            <li class="nav-item">
 				              <a class="nav-link" href= "{{ route('home') }}">
 				                <span data-feather="users"></span>
-				                Personas
+				                Persons
 				              </a>
 				            </li>
 				            <li class="nav-item">
 				              <a class="nav-link" href= "{{ route('evento') }}">
 				                <span data-feather="file"></span>
-				                Eventos
+				                Events
 				              </a>
 				            </li>
 				        </ul>       

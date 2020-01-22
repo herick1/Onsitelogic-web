@@ -32,7 +32,7 @@ class ParticipanteRequest extends FormRequest
             'segundo_apellido' => 'max:60',
             'fecha_de_nacimiento' => 'date',
             'telefono' => 'required|max:30',
-            'tipo' => 'max:20|in:Visitante,Exponente,Asesor,Otros',
+            'tipo' => 'max:20|in:Visitor,Exponent,Advisor,Others',
             'parroquiaSelect' => 'required|min:1',
         ];
     }

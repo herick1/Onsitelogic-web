@@ -2,12 +2,12 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Cedula</th>
-                    <th>Nombre(s)</th>
-                    <th>Apellido(s)</th>
+                    <th>Identification card</th>
+                    <th>Name(s)</th>
+                    <th>Last name(s)</th>
                     <th>Email</th>
-                    <th>Asistencia</th>
-                    <th>Acciones</th>
+                    <th>Assistance</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,12 +39,12 @@
                                 <form style="display:inline" method="POST" action="{{route('UpdateAsistencia', [$participante->idHistorial,0])}}">
                                     {!!csrf_field()!!}
                                         <button class="btn btn-success"  type="submit" style="width: 50px;">
-                                        Si
+                                        Yes
                                         </button>                 
                                 </form>
                             @else
                                 <button data-toggle="modal" data-target="#updateasistenciaModal"class="btn btn-success" style="width: 50px;">
-                                Si
+                                Yes
                                 </button>
                             @endif
                         @else
@@ -66,12 +66,12 @@
 						<!-- BOTONES -->
                         <a data-toggle="modal" data-target="#actualizarModal" >
 							<button class="btn btn-primary" onclick="selecionadoActualizar({{$participante->id}})">
-                            Actualizar
+                            Update
                             </button>
 						</a>
                         <a data-toggle="modal" data-target="#eliminarModal{{$participante->id}}">
                             <button class="btn btn-danger">
-                            Eliminar 
+                            Delete 
                             </button>
                         </a>
                         
@@ -80,22 +80,22 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Eliminar participante</h5>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete participant</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    ¿Esta usted seguro que quiere eliminar este participante?
+                                    Are you sure to delete this participant?
                                   </div>
                                   <div class="modal-footer">
 
                                     <form style="display:inline" method="POST" action="{{route('participantes.destroy',$participante->id)}}">
                                             {!!method_field('DELETE')!!}
                                             {!!csrf_field()!!}
-                                            <button class="btn btn-danger" type="submit">Eliminar</button>                 
+                                            <button class="btn btn-danger" type="submit">Delete</button>                 
                                     </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                   </div>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Actualizar información del participante</h4>
+                    <h4>Update participant</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>×</span>
                     </button>
@@ -128,7 +128,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Información del participante</h4>
+                    <h4>Show participant </h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>×</span>
                     </button>
@@ -144,16 +144,16 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Elija primero un evento</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Choose an event first</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body" style="font-weight: normal;">
-                Para poder actualizar una asistencia primero debe seleccionar un evento
+                To be able to update an attendance you must first select an event
               </div>
               <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
         </div>

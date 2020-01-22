@@ -2,12 +2,12 @@
 
 @section('contenido')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Participantes</h1>
+      <h1 class="h2">Participants</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
             <a data-toggle="modal" data-target="#create" >
                 <button class="btn btn-outline-info ml-4">
-                    Crear un participante
+                    Create a participant
                 </button>
             </a>
         </div>
@@ -20,10 +20,10 @@
                 <!-- caso de recargar la pagina y vienes de un update o un delete-->
                 @if($eventoAntesSeleccionado)
                         <option Select value="{{$eventoAntesSeleccionado->id}}">{{$eventoAntesSeleccionado->nombre}}</option>
-                    <optgroup label="opciones">
-                        <option value="0">Seleccione un evento</option>
+                    <optgroup label="options">
+                        <option value="0">Select a event</option>
                 @else
-                    <option Select value="0">Seleccione un evento</option>
+                    <option Select value="0">Select a event</option>
                 @endif
 
                 @foreach($eventos as $evento)
@@ -40,8 +40,8 @@
         <b>
         <div class="col-8">
             <div class="input-group" style="width:400px;">
-                <input type="text" class="form-control" id="texto" placeholder="Buscar por">
-                <div class="input-group-append"><span class="btn btn-primary">Buscar</span></div>
+                <input type="text" class="form-control" id="texto" placeholder="Search for...">
+                <div class="input-group-append"><span class="btn btn-primary">Search</span></div>
             </div>
         </div>
         <br>
@@ -58,7 +58,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Crear un nuevo participante</h4>
+                    <h4>Create a new participant</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>×</span>
                     </button>
@@ -77,13 +77,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Ups no se pudo completar la transaccion</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Ups the transaction could not be completed</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body" style="font-weight: normal;">
-                se ecnontraron los siguientes errores durante la transaccion:
+                The following errors were found during the transaction
                     <div class="alert alert-warning" role="alert">
                        @foreach ($errors->all() as $error)
                           <div>{{ $error }}</div>
@@ -103,13 +103,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Se a {{$mensajeDeexito}} satifactoriamente</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Has been {{$mensajeDeexito}} successfully</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body" style="font-weight: normal;">
-                La transacción realizada a {{$mensajeDeexito}} correctamente al participante
+                The transaction made successfully {{$mensajeDeexito}} to the participant
                 <br>
                 <img  src="{{asset('check_animado_correcto.gif')}}" style="max-height: 200px">
               </div>

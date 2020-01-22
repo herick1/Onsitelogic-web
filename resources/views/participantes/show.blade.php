@@ -1,18 +1,18 @@
     @if($participante)
     <div class="text-left" style="font-weight: normal;">
-        <strong>Cédula de identidad:&nbsp;</strong> {{$participante->cedula}}<br>
+        <strong>Identification card:&nbsp;</strong> {{$participante->cedula}}<br>
         <strong>Email: &nbsp;</strong> <i>{{$participante->email}}</i><br>
-        <strong>Nombre(s):&nbsp;</strong> <i>{{$participante->pimer_nombre}}&nbsp;{{$participante->segundo_nombre}}</i>
+        <strong>Name(s):&nbsp;</strong> <i>{{$participante->pimer_nombre}}&nbsp;{{$participante->segundo_nombre}}</i>
         <br>
-        <strong>Apellidos(s):&nbsp;</strong> <i>{{$participante->primer_apellido}}&nbsp;{{$participante->segundo_apellido}}</i><br>
-        <strong>fecha de nacimiento: &nbsp;</strong> <i>{{$participante->fecha_de_nacimiento}}</i><br>
-        <strong>Telefono: &nbsp;</strong> <i>{{$participante->telefono}}</i><br>
-        <strong>Categoria: &nbsp;</strong> <i>{{$participante->tipo}}</i><br>
-        <strong>Direccion:&nbsp;</strong> <i>{{$participante->estado}},&nbsp;{{$participante->municipio}},&nbsp;{{$participante->parroquia}}</i>
+        <strong>Last name(s):&nbsp;</strong> <i>{{$participante->primer_apellido}}&nbsp;{{$participante->segundo_apellido}}</i><br>
+        <strong>Date of birth: &nbsp;</strong> <i>{{$participante->fecha_de_nacimiento}}</i><br>
+        <strong>Phone: &nbsp;</strong> <i>{{$participante->telefono}}</i><br>
+        <strong>Type: &nbsp;</strong> <i>{{$participante->tipo}}</i><br>
+        <strong>Address:&nbsp;</strong> <i>{{$participante->estado}},&nbsp;{{$participante->municipio}},&nbsp;{{$participante->parroquia}}</i>
         <br>
 	    <br>
-        <a  type="button" class="btn btn-info" data-dismiss="modal">
-            Volver
-        </a>
+        <button class="btn btn-info" data-dismiss="modal">
+            Return
+        </button>
     </div>
     @endif

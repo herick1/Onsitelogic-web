@@ -90,7 +90,7 @@ class EventoController extends Controller
                         'p2' =>  $id_evento,
                 ));
             }
-            $mensajeDeexito="creado";
+            $mensajeDeexito="created";
         }
         else{
             $mensajeDeexito=null;
@@ -181,7 +181,7 @@ class EventoController extends Controller
                         'p6' => $request->input('parroquiaSelect') ,
                     ));
 
-            $mensajeDeexito="actualizado";
+            $mensajeDeexito="updated";
         }
         else{
             $mensajeDeexito=null;
@@ -211,7 +211,7 @@ class EventoController extends Controller
                                         FROM Lugar 
                                         where tipo = 'Estado'"
         ));
-        $mensajeDeexito="eliminado";
+        $mensajeDeexito="deleted";
         return view('eventos.index' , compact('eventos_lista', 'estados','mensajeDeexito'));
     }
 
