@@ -3,17 +3,18 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use DB;
 
-class validarFechas implements Rule
+class validarLugar implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($min)
+    public function __construct($parroquia)
     {
-           $this->fecha_inicio = $min;
+           $this->parroquia = $parroquia;
     }
 
     /**
@@ -25,7 +26,11 @@ class validarFechas implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value >= $this->fecha_inicio;
+
+        $parroquia = DB::table('Lugar')->where('id',$this->parroquia)->first();
+
+        if($parroquia)return true;
+        else return false;
     }
 
     /**
@@ -35,6 +40,6 @@ class validarFechas implements Rule
      */
     public function message()
     {
-        return "The event start date must be less than the event end date";
+        return "The parish isn't valid";
     }
 }

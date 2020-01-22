@@ -55,9 +55,15 @@ class ParticipanteController extends Controller
      */
     public function store(\App\Http\Requests\ParticipanteRequest $request)
     {
-        //esta variable solo se utiliza la veces que hay que recargar la pagina por una actualizacion, aupdate de asistencia o cuando se elimina un participante y ya se habia selecionado un evento antes
-          
 
+        $this->validate($request,[ 'parroquiaSelect' => [ new \App\Rules\validarLugar($request->input('parroquiaSelect'))],
+                                   'cedula' => [ new \App\Rules\validarParticpanteRepetido($request->input('primer_nombre'),
+                                                                              $request->input('segundo_nombre'),
+                                                                              $request->input('primer_apellido'),
+                                                                              $request->input('segundo_apellido'),
+                                                                              $request->input('fecha_de_nacimiento'))]
+        ]);
+          
         if($request->input('parroquiaSelect')>0)
         {
             DB::select('CALL sp_insert_participante(:p0, :p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8 , :p9 )',
@@ -201,7 +207,13 @@ class ParticipanteController extends Controller
      */
     public function update(\App\Http\Requests\ParticipanteRequest $request, $id)
     {
-        $mensaje= $request->input('Participante');
+        $this->validate($request,[ 'parroquiaSelect' => [ new \App\Rules\validarLugar($request->input('parroquiaSelect'))],
+                                   'cedula' => [ new \App\Rules\validarParticpanteRepetidoUpdate($id, $request->input('primer_nombre'),
+                                                                              $request->input('segundo_nombre'),
+                                                                              $request->input('primer_apellido'),
+                                                                              $request->input('segundo_apellido'),
+                                                                              $request->input('fecha_de_nacimiento'))]
+        ]);
 
         //por si se ejecuta un parroquia igual a 0 
         if($request->input('parroquiaSelect') > 0){

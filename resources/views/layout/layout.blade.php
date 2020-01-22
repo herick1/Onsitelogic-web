@@ -12,7 +12,7 @@
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{asset('static/bootstrap.min.css')}}">
 
-		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>>
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script src="{{asset('static/bootstrap.bundle.min.js')}}"></script>
 		<script src="{{asset('static/sweetalert.min.js')}}"></script>
 		    

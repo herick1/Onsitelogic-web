@@ -47,8 +47,11 @@ class EventoController extends Controller
     public function store(\App\Http\Requests\EventoRequest  $request)
     {
 
-        //Model::unguard();
-        //metodo post
+        $this->validate($request, ['fecha_fin' => ['date', new \App\Rules\validarFechas($request->input('fecha_inicio'))], 
+                                   'parroquiaSelect' => [ new \App\Rules\validarLugar($request->input('parroquiaSelect'))]
+
+        ]);
+
         if( $request->input('parroquiaSelect') > 0) {
             DB::select('CALL sp_insert_evento(:p0, :p1, :p2, :p3, :p4, :p5)',
                     array(
@@ -171,8 +174,10 @@ class EventoController extends Controller
     {
         
         //ya que hice las reglas basicas del request hago mis reglas personalizadas
-        $this->validate($request, ['fecha_fin' => ['date', new \App\Rules\validarFechas($request->input('fecha_inicio'))]]);
+        $this->validate($request, ['fecha_fin' => ['date', new \App\Rules\validarFechas($request->input('fecha_inicio'))], 
+                                   'parroquiaSelect' => [ new \App\Rules\validarLugar($request->input('parroquiaSelect'))]
 
+        ]);
 
         if( $request->input('parroquiaSelect') > 0) {
             DB::select('CALL sp_update_evento(:p0, :p1, :p2, :p3, :p4, :p5, :p6)',
