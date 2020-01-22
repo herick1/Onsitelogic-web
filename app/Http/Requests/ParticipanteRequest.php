@@ -36,4 +36,11 @@ class ParticipanteRequest extends FormRequest
             'parroquiaSelect' => 'required|min:1',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'parroquiaSelect.required' => 'The parish is required',
+        ];
+    }
 }

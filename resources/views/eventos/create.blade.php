@@ -23,7 +23,7 @@
 			<label for="lugar"><b>Address</b></label>
 			<div class="row p-3">
 			    <div id="contenedor1">
-					<p>State</p>
+					<b>State</b>
 					<select id="estadoSelect" class="card text-left p-2" onchange="estado()">
 		                <option Select value="0">Select a state</option>
 		                @foreach($estados as $estado)
@@ -32,13 +32,13 @@
 					</select>
 				</div>
 			    <div id="contenedor2">
-			    	<p>Municipality</p>
+			    	<b>Municipality</b>
 					<select id="municipioSelect" class="card text-left p-2">
 						<option value="0">Select a municipality </option>
 					</select>
 			    </div>			
 			    <div id="contenedor3">
-			    	<p>Parish</p>
+			    	<b>Parish</b>
 					<select id="parroquiaSelect" class="card text-left p-2" name="parroquiaSelect">
 						<option value="0">Select a parish</option>
 					</select>
@@ -59,7 +59,7 @@
 
 			<br>
 			<br>			
-			<input  class="btn btn-info" type="submit" value="enviar">
+			<input  class="btn btn-info" type="submit" value="Send">
 	        <button class="btn btn-info" data-dismiss="modal">
 	            Return
 	        </button>
@@ -77,7 +77,7 @@
             fetch(`/lugar/buscadorMunicipio?estado=${document.getElementById("estadoSelect").value}`,{ method:'get' })
             .then(response  =>  response.text() )
             .then(html      =>  {   document.getElementById("contenedor2").innerHTML = html;
- 									document.getElementById("contenedor3").innerHTML = '<p>Parish</p><select id="parroquiaSelect" class="card text-left p-2"><option value="0">Select a parish</option></select>'
+ 									document.getElementById("contenedor3").innerHTML = '<b>Parish</b><select id="parroquiaSelect" class="card text-left p-2"><option value="0">Select a parish</option></select>'
         	})
   		}
   		buscarParroquia = function(){

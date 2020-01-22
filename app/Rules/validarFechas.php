@@ -13,7 +13,7 @@ class validarFechas implements Rule
      */
     public function __construct($min)
     {
-           $this->min = $min;
+           $this->fecha_inicio = $min;
     }
 
     /**
@@ -25,8 +25,7 @@ class validarFechas implements Rule
      */
     public function passes($attribute, $value)
     {
-        $this->valor = $value;
-        return false;
+        return $value >= $this->fecha_inicio;
     }
 
     /**
@@ -36,6 +35,6 @@ class validarFechas implements Rule
      */
     public function message()
     {
-        return $this->min;
+        return "The event end date debe ser menor a la event start date";
     }
 }
