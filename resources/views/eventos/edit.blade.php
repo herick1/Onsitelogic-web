@@ -1,3 +1,4 @@
+
 			<label for="tipo"><b>Type</b></label>
 			<div class="form-group">
 				<input  class="form-control input-lg" type="text" name="tipo" value="{{$eventos_lista->tipo }}"  maxlength="20" required>
@@ -70,7 +71,7 @@
 			</div>	
 	</div>
 	<div class="float-right">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateYesNoModal">Proceed</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateYesNoModal{{$eventos_lista->id}}">Proceed</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	</div>
 

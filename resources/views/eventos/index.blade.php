@@ -39,7 +39,7 @@
                 <div class="text-left">
                 <form method="POST" action="{{ route('eventos.store') }}">
                 {!!csrf_field()!!}
-                @include('participantes.create')
+                @include('eventos.create')
           </div>
           <div class="modal-footer">
           </div>
