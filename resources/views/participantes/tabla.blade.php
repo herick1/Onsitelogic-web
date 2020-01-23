@@ -64,7 +64,7 @@
 					</td>
 					<td>
 						<!-- BOTONES -->
-                        <a data-toggle="modal" data-target="#actualizarModal" >
+                        <a data-toggle="modal" data-target="#actualizarModal{{$participante->id}}" >
 							<button class="btn btn-primary" onclick="selecionadoActualizar({{$participante->id}})">
                             Update
                             </button>
@@ -76,7 +76,33 @@
                         </a>
                         
                             <!-- MODALES-->
-                            <div id="actualizarModal" class="modal fade" role="dialog">
+
+                            <div class="modal fade" id="eliminarModal{{$participante->id}}">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete participant</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        Are you sure to delete this participant?
+                                      </div>
+                                      <div class="modal-footer">
+
+                                        <form style="display:inline" method="POST" action="{{route('participantes.destroy',$participante->id)}}">
+                                                {!!method_field('DELETE')!!}
+                                                {!!csrf_field()!!}
+                                                <button class="btn btn-danger" type="submit">Delete</button>                 
+                                        </form>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="actualizarModal{{$participante->id}}" class="modal fade" role="dialog">
                               <div class="modal-dialog modal-lg">
                                 <!-- Modal content-->
                                 <div class="modal-content">
@@ -88,7 +114,7 @@
                                     <form method="POST" action="{{ route('participantes.update', $participante->id) }}">
                                         {!!method_field('PUT')!!}
                                         {!!csrf_field()!!}  
-                                  <div class="modal-body" id="contenedorDeModalActualizar">
+                                  <div class="modal-body" id="contenedorDeModalActualizar{{$participante->id}}">
                                   </div>
                                   <div class="modal-footer">
                                   </div>
@@ -96,11 +122,11 @@
                               </div>
                             </div>
 
-                            <div class="modal fade stick-up UpdateYesNoModal" tabindex="-1" role="dialog" aria-labelledby="UpdateYesNoModal" id="UpdateYesNoModal" aria-hidden="true">
+                            <div class="modal fade stick-up UpdateYesNoModal{{$participante->id}}" tabindex="-1" role="dialog" aria-labelledby="UpdateYesNoModal{{$participante->id}}" id="UpdateYesNoModal{{$participante->id}}" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 id="messageBox2" class="modal-title">Confirm updare participant</h4>
+                                            <h4 id="messageBox2" class="modal-title">Confirm update participant</h4>
                                         </div>
                                         <div class="modal-body" style="font-weight: normal;">
                                             Are you sure to update this participant?
@@ -113,30 +139,6 @@
                             </div>
                             </form>
                         </form>
-                        <div class="modal fade" id="eliminarModal{{$participante->id}}">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete participant</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    Are you sure to delete this participant?
-                                  </div>
-                                  <div class="modal-footer">
-
-                                    <form style="display:inline" method="POST" action="{{route('participantes.destroy',$participante->id)}}">
-                                            {!!method_field('DELETE')!!}
-                                            {!!csrf_field()!!}
-                                            <button class="btn btn-danger" type="submit">Delete</button>                 
-                                    </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
 					</td>
 				</tr>
 				@endforeach
@@ -186,7 +188,7 @@
         selecionadoActualizar = function(id){
             fetch(`/participantes/`+id+`/edit`,{ method:'get' })
             .then(response  =>  response.text() )
-            .then(html      =>  {   document.getElementById("contenedorDeModalActualizar").innerHTML = html ;
+            .then(html      =>  {   document.getElementById("contenedorDeModalActualizar"+id).innerHTML = html ;
                                     document.getElementById("texto").value = ""
              })
         }

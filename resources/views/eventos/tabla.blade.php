@@ -100,7 +100,7 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 id="messageBox2" class="modal-title">Confirm updare event</h4>
+                                            <h4 id="messageBox2" class="modal-title">Confirm update event</h4>
                                         </div>
                                         <div class="modal-body" style="font-weight: normal;">
                                             Are you sure to update this event?

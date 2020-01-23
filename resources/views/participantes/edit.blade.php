@@ -98,7 +98,7 @@
 			</select>
 	</div>
 	<div class="float-right">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateYesNoModal">Proceed</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#UpdateYesNoModal{{$participantes_lista->id}}">Proceed</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	</div>
 
