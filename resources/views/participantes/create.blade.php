@@ -82,7 +82,7 @@
 			       <option  value="Advisor">Advisor</option> 
 			       <option value="Others">Others</option> 
 			</select>
-	</div>
+			
 	<div class=" float-right">
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreatenYesNoModal">Proceed</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

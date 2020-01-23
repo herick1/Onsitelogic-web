@@ -48,11 +48,11 @@
         <br>
     </div>
 
-    <div id="contenedor" style="min-height: 400px">
-            @include('participantes.tabla')
-    </div>
 
 <!-- Modal -->
+<div class="text-left">
+<form method="POST" action="{{ route('participantes.store') }}">
+{!!csrf_field()!!}
 <div id="create" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <!-- Modal content-->
@@ -62,9 +62,6 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-           <div class="text-left">
-            <form method="POST" action="{{ route('participantes.store') }}">
-            {!!csrf_field()!!}
             @include('participantes.create')
       </div>
       <div class="modal-footer">
@@ -89,8 +86,13 @@
             </div>
         </div>
     </div>
+        </div>
     </form>
-</form>
+
+
+    <div id="contenedor" style="min-height: 400px">
+            @include('participantes.tabla')
+    </div>
 
 
 @if($errors->first('cedula') or $errors->first('primer_nombre') or $errors->first('segundo_nombre') or $errors->first('primer_apellido') or $errors->first('segundo_apellido')  or $errors->first('email') or $errors->first('fecha_de_nacimiento')  or $errors->first('telefono') or $errors->first('tipo') or $errors->first('parroquiaSelect') )

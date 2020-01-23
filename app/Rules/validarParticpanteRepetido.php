@@ -31,7 +31,7 @@ class validarParticpanteRepetido implements Rule
      */
     public function passes($attribute, $value)
     {
-
+        
         $participante = DB::table('Participante')->where([['cedula', '=', $value],
                                                        ['pimer_nombre', '=', $this->primer_nombre],
                                                        ['segundo_nombre', '=', $this->segundo_nombre],
