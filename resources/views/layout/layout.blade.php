@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="generator" content="Jekyll v3.8.6">
-		<title>OnsiteLogic proyect</title>
+		<title>OnsiteLogic</title>
 		<link rel="icon" href="https://i0.wp.com/raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/django-logo.png?resize=450%2C450&ssl=1&crop=1">
 
 		<!-- Bootstrap core CSS -->

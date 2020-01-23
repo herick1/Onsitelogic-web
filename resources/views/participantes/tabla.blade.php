@@ -101,7 +101,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <form method="POST" action="{{ route('participantes.update', $participante->id) }}">
+                                        {!!method_field('PUT')!!}
+                                        {!!csrf_field()!!}  
                             <div id="actualizarModal{{$participante->id}}" class="modal fade" role="dialog">
                               <div class="modal-dialog modal-lg">
                                 <!-- Modal content-->
@@ -111,9 +113,6 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   </div>
                                     <div class="text-left">
-                                    <form method="POST" action="{{ route('participantes.update', $participante->id) }}">
-                                        {!!method_field('PUT')!!}
-                                        {!!csrf_field()!!}  
                                   <div class="modal-body" id="contenedorDeModalActualizar{{$participante->id}}">
                                   </div>
                                   <div class="modal-footer">

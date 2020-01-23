@@ -89,7 +89,6 @@
         </div>
     </form>
 
-
     <div id="contenedor" style="min-height: 400px">
             @include('participantes.tabla')
     </div>
@@ -107,7 +106,7 @@
                 </button>
               </div>
               <div class="modal-body" style="font-weight: normal;">
-                The following errors were found during the transaction
+                The following errors were found during the transaction:
                     <div class="alert alert-warning" role="alert">
                        @foreach ($errors->all() as $error)
                           <div>{{ $error }}</div>
@@ -133,7 +132,7 @@
                 </button>
               </div>
               <div class="modal-body" style="font-weight: normal;">
-                The transaction made successfully {{$mensajeDeexito}} to the participant
+                The transaction {{$mensajeDeexito}} a participant successfully.
                 <br>
                 <img  src="{{asset('check_animado_correcto.gif')}}" style="max-height: 200px">
               </div>

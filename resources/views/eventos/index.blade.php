@@ -77,7 +77,7 @@
                 </button>
               </div>
               <div class="modal-body" style="font-weight: normal;">
-                The transaction made successfully {{$mensajeDeexito}} to the event
+                The transaction {{$mensajeDeexito}} a event successfully.
                 <br>
                 <img  src="{{asset('check_animado_correcto.gif')}}" style="max-height: 200px">
               </div>

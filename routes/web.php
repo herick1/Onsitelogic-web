@@ -23,6 +23,9 @@ Route::get('busquedaEvento/{idEvento?}', ['as' => 'busquedaEvento', 'uses'=> 'Pa
 
 Route::post('UpdateAsistencia/{id?}/{asistencia?}', ['as' => 'UpdateAsistencia', 'uses'=> 'ParticipanteController@UpdateAsistencia'])->where('id' , "[0-9]+")->where('asistencia' , "[0-1]+");
 
+//este get solo es necesario porque si ocurre una eventualidad con el post el puede agarrar el router get y devolverte a la vista inicial sin que se explote la aplicacion
+Route::get('UpdateAsistencia/{id?}/{asistencia?}', 'ParticipanteController@index');
+
 //revisar si este todovaia se utiliza sino borrarlo
 Route::get('buscador', ['as' => 'buscador', 'uses'=> 'ParticipanteController@buscador']);
 

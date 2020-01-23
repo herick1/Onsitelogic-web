@@ -342,7 +342,7 @@ class ParticipanteController extends Controller
         foreach ($eventoAntesSeleccionados as $evento) {
             $eventoAntesSeleccionado=$evento;
         }
-        $mensajeDeexito="update assistance";
+        $mensajeDeexito="updated the assistance";
         return view('participantes.index' , compact('participantes_lista', 'eventos', 'estados', 'eventoAntesSeleccionado','mensajeDeexito'));
     }
 
