@@ -81,7 +81,7 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4>Update event {{$evento->id}}</h4>
+                                <h4>Update event</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                               </div>
                                 <div class="text-left">

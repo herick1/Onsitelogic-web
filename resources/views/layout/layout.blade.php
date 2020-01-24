@@ -25,7 +25,7 @@
 	<body style="padding-top:2.5rem! important">
 
 		<nav class="navbar navbar-dark fixed-top bg-info shadow ">
-		  <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center" href="/">OnsiteLogic proyect</a>
+		  <a class="navbar-brand col-sm-3 col-md-2 mr-0 text-center" href="/">OnsiteLogic</a>
 		  <ul class="navbar-nav px-3">
 		    <li class="nav-item text-nowrap">
 		      <a class="nav-link text-white" href= "{{ route('home') }}">Home</a>
